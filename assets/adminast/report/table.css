@@ -1,0 +1,57 @@
+
+body {
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Dosis', sans-serif;
+}
+
+.logo {
+	margin: auto;
+    margin-top: 10px;
+    max-width: 200px;
+    min-height: 100px;
+    position: relative;
+    text-align: center;
+}
+
+.logo img {
+	object-fit: cover;
+    object-position: center;
+    width: 90%;
+    height: auto;
+}
+
+.table1 {
+	border-collapse: collapse;
+}
+
+.table1, th, td {
+	border : 2px solid #000;
+	text-align: center;
+}
+
+.change-no {
+	float: right;
+    margin-right: 20px;
+}
+
+.table1 td.kr {
+	text-align: left;
+	vertical-align: top;
+	padding: 7px 0 0 10px;
+}
+
+.table1 td.kr p{
+	font-weight: bold;
+    margin-top: 5px;
+}
+
+.table1 td.kr input{
+    font-weight: bold;
+    width: 15px;
+    height: 15px;
+}

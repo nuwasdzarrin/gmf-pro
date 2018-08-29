@@ -5,10 +5,12 @@
      function __construct(){
          parent::__construct();
          $this->simple_login->cek_login();
+         $this->load->model('M_AllData');
      }
- 
+     
      //Load All Table Page
      public function index() {
-         $this->template->load('v_static','V_AllData');
+     	$data['alldt'] = $this->M_AllData->AllData();
+     	$this->template->load('v_static','V_AllData', $data);
      }
  }

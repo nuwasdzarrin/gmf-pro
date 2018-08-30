@@ -21,7 +21,7 @@
              $this->load->view('account/v_register');
          }else{
  
-             $data['nama']   =    $this->input->post('name');
+             $data['id_employee']   =    $this->input->post('name');
              $data['username'] =    $this->input->post('username');
              $data['email']  =    $this->input->post('email');
              $data['password'] =    md5($this->input->post('password'));

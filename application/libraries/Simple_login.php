@@ -28,19 +28,21 @@
      * @param string username dari input form
      * @param string password dari input form
      */
-     public function login($username, $password) {
+     public function login($id_employee, $password) {
          
          //cek username dan password
-         $query = $this->CI->db->get_where('users',array('username'=>$username,'password' => md5($password)));
+         $query = $this->CI->db->get_where('users',array('id_employee'=>$id_employee,'password' => md5($password)));
  
          if($query->num_rows() == 1) {
              //ambil data user berdasar username
-             $row  = $this->CI->db->query('SELECT id_user FROM users where username = "'.$username.'"');
+             $row  = $this->CI->db->query('SELECT id_user,username FROM users where id_employee = "'.$id_employee.'"');
              $admin     = $row->row();
              $id   = $admin->id_user;
+             $username   = $admin->username;
  
              //set session user
              $this->CI->session->set_userdata('username', $username);
+             $this->CI->session->set_userdata('id_employee', $id_employee);
              $this->CI->session->set_userdata('id_login', uniqid(rand()));
              $this->CI->session->set_userdata('id', $id);
  
@@ -64,7 +66,7 @@
      public function cek_login() {
  
          //cek session username
-         if($this->CI->session->userdata('username') == '') {
+         if($this->CI->session->userdata('id_employee') == '') {
  
              //set notifikasi
              $this->CI->session->set_flashdata('sukses','Anda belum login');

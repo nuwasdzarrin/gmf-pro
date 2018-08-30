@@ -9,6 +9,6 @@
  </head>
  <body>
    <h3><?php echo $message; ?></h3>
-    <p><?php echo anchor('beranda','Kembali ke beranda'); ?></p>
+    <p><?php echo anchor('login','Silahkan Login'); ?></p>
  </body>
  </html>

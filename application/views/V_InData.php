@@ -144,7 +144,7 @@
 									<input class="form-control" name="support_doc">
 									<p class="help-block">Example block-level help text here.</p>
 								</div>
-								<button type="submit" class="btn btn-success">Submit & Generate PDF</button>
+								<button type="submit" class="btn btn-success">Save & Print</button>
 								<button type="reset" class="btn btn-danger">Reset</button>
 							</div>
 						</form>

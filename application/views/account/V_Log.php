@@ -54,7 +54,7 @@
                     <form method="post" action="Login">
                         <?php echo form_open('login');?>
                         <div class="group">
-                            <label for="user" class="label">Username</label>
+                            <label for="user" class="label">ID Employee</label>
                             <input id="user" type="text" class="input" name="username" value="<?php echo set_value('username'); ?>" required>
                             <p> <?php echo form_error('username'); ?> </p>
                         </div>
@@ -84,12 +84,12 @@
                     <form method="post" action="Register">
                         <?php echo form_open('register');?>
                         <div class="group">
-                            <label for="user1" class="label">Name</label>
+                            <label for="user1" class="label">ID Employee</label>
                             <input id="user1" type="text" class="input" name="name" value="<?php echo set_value('name'); ?>" required>
                             <p> <?php echo form_error('name'); ?> </p>
                         </div>
                         <div class="group">
-                            <label for="user1" class="label">Username</label>
+                            <label for="user1" class="label">Name</label>
                             <input id="user1" type="text" class="input" name="username" value="<?php echo set_value('username'); ?>" required>
                             <p> <?php echo form_error('username'); ?> </p>
                         </div>

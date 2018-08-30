@@ -1,3 +1,10 @@
+<style type="text/css">
+.odd-gradeX td form button {
+    margin: 2px 2px 2px 2px; 
+    float: left;
+}
+  
+</style>
 
 <div id="page-wrapper">
     <div class="row">
@@ -18,34 +25,48 @@
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Change No</th>
                                 <th>Date</th>
                                 <th>CAMP No</th>
                                 <th>RVCD</th>
                                 <th>Engineer</th>
                                 <th>Rev No</th>
-                                <th>Status</th>
                                 <th>Send To Garuda</th>
                                 <th>Receive From Garuda</th>
                                 <th>Attachment</th>
+                                <th>Status</th>
+                                <th>Control</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($alldt->result() as $all) { ?>
-                                <tr class="odd gradeX">
+                                <tr class="odd-gradeX">
                                     
-                                    <td><?php echo $all->id;?></td>
                                     <td><?php echo $all->code_pla."-".$all->id;?></td>
                                     <td><?php echo $all->eff_date;?></td>
-                                    <td class="center"><a href="<?php echo site_url('SgReport/single/').$all->item_no.'/'.$all->id?>"><?php echo $all->item_no;?></a></td>
+                                    <td class="center"><?php echo $all->item_no;?></td>
+                                    <td class="center"><?php echo $all->rvcd;?></td>
+                                    <td class="center"><?php echo $all->engineer;?></td>
+                                    <td class="center">X</td>
                                     <td class="center">X</td>
                                     <td class="center">X</td>
                                     <td class="center">X</td>
                                     <td class="center"><?php echo $all->sta;?></td>
-                                    <td class="center">X</td>
-                                    <td class="center">X</td>
-                                    <td class="center">X</td>
+                                    <td class="center">
+                                        <form method="POST" action="<?php echo site_url('SgReport/single')?>">
+                                            <input type="hidden" name="id" value="<?php echo $all->id;?>">
+                                            <input type="hidden" name="item_no" value="<?php echo $all->item_no;?>">
+                                            <button type="submit" title="Print Data" class="btn btn-primary fa fa-print" ></button>
+                                        </form>
+                                        <form method="POST" action="<?php echo site_url('eddata')?>">
+                                            <input type="hidden" name="del" value="<?php echo $all->item_no;?>">
+                                            <button type="submit" title="Revisi Data" class="btn btn-warning fa fa-edit" ></button>
+                                        </form>
+                                        <form method="POST" action="<?php echo site_url('EdData/del')?>">
+                                            <input type="hidden" name="id" value="<?php echo $all->id;?>">
+                                            <button type="submit" title="Hapus Data" class="btn btn-danger fa fa-trash-o" ></button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php } ?>
                             

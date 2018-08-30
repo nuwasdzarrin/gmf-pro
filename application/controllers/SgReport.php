@@ -10,8 +10,8 @@ class SgReport extends CI_Controller {
    
      //Load one or two data latest
    public function single() { //fungsi load report from all data
-      $item_no = $this->uri->segment(3);
-      $id = $this->uri->segment(4);
+      $id = $this->input->post('id');
+      $item_no = $this->input->post('item_no');
       $result = $this->M_SgReport->statis($id); //akses Statis Data to header table
         $plane = $result->ac_type;
       $data['ac_cod'] = $this->M_SgReport->acCode($plane); //akses Function A/C Code
@@ -22,7 +22,6 @@ class SgReport extends CI_Controller {
 
     public function InEd() {  //fungsi load report from edit and input
       $item_no = $this->uri->segment(3);
-      //$id = $this->uri->segment(4);
       $result = $this->M_SgReport->sInEd($item_no); //akses Statis Data to header table
         $plane = $result->ac_type;
       $data['ac_cod'] = $this->M_SgReport->acCode($plane); //akses Function A/C Code

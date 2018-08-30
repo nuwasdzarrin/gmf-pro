@@ -1,12 +1,6 @@
 
 body {
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    background-attachment: fixed;
-    font-family: 'Dosis', sans-serif;
+    
 }
 
 .logo {
@@ -27,6 +21,7 @@ body {
 
 .table1 {
 	border-collapse: collapse;
+    font-family: Arial;
 }
 
 .table1, th, td {

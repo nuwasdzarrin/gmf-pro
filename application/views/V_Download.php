@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title><?PHP echo $ac_cod->code_pla."-".$one->id; ?></title>
+	<title>Data Change</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>/assets/adminast/report/table.css" type="text/css" media="all">
-	<link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
 	<style type="text/css">
+	* {
+		font-family: 'Open Sans', sans-serif;
+	}
+
+	html {
+		min-height: 100%;
+		max-width: 100%;
+		position: relative;
+	}
+
+	.logo {
+		margin: auto;
+		margin-top: 10px;
+		max-width: 200px;
+		min-height: 100px;
+		position: relative;
+		text-align: center;
+	}
+
+	.logo img {
+		object-fit: cover;
+		object-position: center;
+		width: 90%;
+		height: auto;
+	}
+
+	.table1 {
+		border-collapse: collapse;
+		font-family: Arial;
+	}
+
+	.table1, th, td {
+		border : 2px solid #000;
+		text-align: center;
+	}
+
+	.change-no {
+		float: right;
+		margin-right: 20px;
+	}
+
+	.table1 td.kr {
+		text-align: left;
+		vertical-align: top;
+		padding: 7px 0 0 10px;
+	}
+
+	.table1 td.kr p{
+		font-weight: bold;
+		margin-top: 5px;
+	}
+
+	.table1 td.kr input{
+		font-weight: bold;
+		width: 15px;
+		height: 15px;
+	}
 	footer {
 		font-size: 12px;
 		color: #000;
@@ -26,14 +80,11 @@
 </style>
 </head>
 <body>
-	<div class="container-fluid">
+	<div>
 		<div class="logo">
-			<img src="<?php echo base_url();?>assets/adminast/report/GI.png">
+			<img src="assets/adminast/report/GI.png">
 			Engineering & Maintenance
 		</div>
-		<button id="non_print" onclick="javascript:window.print()" class="btn btn-primary" style="margin-right: 10px;">Print</button>
-		<a href="<?php echo site_url('SgReport/laporan_pdf/'.$one->item_no.'/'.$one->id);?>" id="non_print" class="btn btn-success" style="margin-right: 10px;">Download</a>
-		<a href="<?php echo site_url('alldata');?>" id="non_print" class="btn btn-warning">Back to All Data</a>
 		<div class="row">
 			<div class="change-no">
 				CHANGE NO : <?PHP echo $ac_cod->code_pla."-".$one->id; ?>

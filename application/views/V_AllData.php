@@ -2,6 +2,7 @@
 .odd-gradeX td form button {
     margin: 2px 2px 2px 2px; 
     float: left;
+    display:inline-block;
 }
   
 </style>
@@ -41,16 +42,16 @@
                         <tbody>
                             <?php foreach ($alldt->result() as $all) { ?>
                                 <tr class="odd-gradeX">
-                                    
-                                    <td><?php echo $all->code_pla."-".$all->id;?></td>
+                                    <?php $change_no=$all->code_pla."-".$all->id;?>
+                                    <td><?php echo $change_no; ?></td>
                                     <td><?php echo $all->eff_date;?></td>
                                     <td class="center"><?php echo $all->item_no;?></td>
                                     <td class="center"><?php echo $all->rvcd;?></td>
                                     <td class="center"><?php echo $all->engineer;?></td>
-                                    <td class="center">X</td>
-                                    <td class="center">X</td>
-                                    <td class="center">X</td>
-                                    <td class="center">X</td>
+                                    <td class="center"><?php echo $all->rev_no;?></td>
+                                    <td class="center"><?php echo $all->send_ga;?></td>
+                                    <td class="center"><?php echo $all->recei_ga;?></td>
+                                    <td class="center"><?php echo $all->att;?></td>
                                     <td class="center"><?php echo $all->sta;?></td>
                                     <td class="center">
                                         <form method="POST" action="<?php echo site_url('SgReport/single')?>">
@@ -58,8 +59,9 @@
                                             <input type="hidden" name="item_no" value="<?php echo $all->item_no;?>">
                                             <button type="submit" title="Print Data" class="btn btn-primary fa fa-print" ></button>
                                         </form>
-                                        <form method="POST" action="<?php echo site_url('eddata')?>">
-                                            <input type="hidden" name="del" value="<?php echo $all->item_no;?>">
+                                        <form method="POST" action="<?php echo site_url('alldata/edAllData')?>">
+                                            <input type="hidden" name="id" value="<?php echo $all->id;?>">
+                                            <input type="hidden" name="change_no" value="<?php echo $change_no;?>">
                                             <button type="submit" title="Revisi Data" class="btn btn-warning fa fa-edit" ></button>
                                         </form>
                                         <form method="POST" action="<?php echo site_url('EdData/del')?>">

@@ -6,6 +6,7 @@ class InData extends CI_Controller {
 		parent::__construct();
 		$this->simple_login->cek_login();
 		$this->load->model('M_InData');
+		$this->load->model('M_AllData');
 	}
 
      //Load one or two data latest
@@ -16,8 +17,9 @@ class InData extends CI_Controller {
 	public function input() {
 		$item_no = $this->input->post('item_no');
 		$cek = $this->db->select('item_no')->from('dt_change')
-		->where('item_no',$item_no)->get();
-		if (!$cek) {
+		->where('item_no',$item_no)->get()->num_rows();
+		
+        if (!$cek) {	//cek jika item_no sudah ada, arahkan ke form revisi
 		$data = array(
 			'item_no' => $item_no,
 			'rvcd' => 'N',
@@ -37,14 +39,21 @@ class InData extends CI_Controller {
 			'sg_num' => $this->input->post('sg_num'),
 			'ac_eff' => $this->input->post('ac_eff'),
 			'reason' => $this->input->post('reason'),
-			'support_doc' => $this->input->post('support_doc'),
-			'engineer' => $this->session->userdata('username')
-			
+			'support_doc' => $this->input->post('support_doc')
 		);
+		//input to table dt_change
 		$this->M_InData->input($data);
+		//input to table dt_control
+		$lt_id = $this->db->select('id')->from('dt_change')
+		->where('item_no',$item_no)->order_by('id','desc')
+		->limit(1)->get()->row();
+		$dta = array('id_change' => $lt_id->id,'engineer' => $this->session->userdata('username'));
+		$this->M_AllData->inp($dta); 
+
 		redirect (site_url('SgReport/InEd/'.$item_no));
 		}else{
-			redirect (site_url('EdData/fromCek/'.$item_no));
+			echo '<script>alert("Camp Item Number are Available. Continue with Revision Page");</script>';
+			redirect (site_url('EdData/fromCek/'.$item_no),'refresh');	//ke form revisi
 		}
 	}
 

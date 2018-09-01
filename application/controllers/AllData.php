@@ -13,4 +13,27 @@
      	$data['alldt'] = $this->M_AllData->AllData();
      	$this->template->load('v_static','V_AllData', $data);
      }
+
+     //load edit all data page
+     public function edAllData() {
+        $id = $this->input->post('id');
+        $change_no = $this->input->post('change_no');
+        $data['all'] = $this->M_AllData->edt($id);
+        $data['change_no'] = $change_no;
+        $this->template->load('v_static','V_edAllData', $data);
+     }
+
+     //update all data
+     public function upAllData() {
+        $id_change = $this->input->post('change_no');
+        $sta = array(
+            'engineer' => $this->input->post('engineer'),
+            'rev_no' => $this->input->post('rev_no'),
+            'send_ga' => $this->input->post('send_ga'),
+            'recei_ga' => $this->input->post('recei_ga'),
+            'att' => $this->input->post('att'),
+        );
+        $this->M_AllData->upd($sta, $id_change);
+        redirect (site_url('alldata'));
+     }
  }

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Engineering & Maintenance GMF-Aeroasia</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>/assets/adminast/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

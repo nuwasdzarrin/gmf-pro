@@ -51,7 +51,14 @@
                                     <td class="center"><?php echo $all->rev_no;?></td>
                                     <td class="center"><?php echo $all->send_ga;?></td>
                                     <td class="center"><?php echo $all->recei_ga;?></td>
-                                    <td class="center"><?php echo $all->att;?></td>
+                                    <td class="center">
+                                        <?php if($all->att){ ?>
+                                            <a href="<?php echo $all->att;?>"><?php echo $all->att;?></a>
+                                        <?php } else { ?>
+                                            <a href="<?php echo site_url('alldata/edLink/').$change_no."/".$all->id;?>" class="btn btn-primary fa fa-link" title="link"></a>
+                                            <a href="#" class="btn btn-success fa fa-upload" title="upload file"></a>
+                                        <?php } ?>
+                                    </td>
                                     <td class="center"><?php echo $all->sta;?></td>
                                     <td class="center">
                                         <form method="POST" action="<?php echo site_url('SgReport/single')?>">

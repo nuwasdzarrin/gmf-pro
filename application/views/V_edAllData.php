@@ -19,7 +19,7 @@
 								<div class="form-group">
                                     <label for="disabledSelect">Change No</label>
                                     <input class="form-control" id="disabledInput" type="text" value="<?php echo $change_no;?>" disabled>
-                                    <input type="hidden" name="change_no" value="<?php echo $all->id_change;?>">
+                                    <input type="hidden" name="id_change" value="<?php echo $all->id_change;?>">
                                 </div>
 								<div class="form-group">
 									<label>Engineer</label>
@@ -31,8 +31,7 @@
 									<input class="form-control" name="rev_no" value="<?php echo $all->rev_no;?>">
 									<p class="help-block">Example block-level help text here.</p>
 								</div>
-								<button type="submit" class="btn btn-success">Update</button>
-								<button type="reset" class="btn btn-danger">Reset</button>
+								
 							</div>
 							<!-- /.col-lg-6 (nested) -->
 							<div class="col-lg-6">
@@ -51,6 +50,8 @@
 									<input class="form-control" name="att" value="<?php echo $all->att;?>">
 									<p class="help-block">Example block-level help text here.</p>
 								</div>
+								<button type="submit" class="btn btn-success">Update</button>
+								<button type="reset" class="btn btn-danger">Reset</button>
 							</div>
 						<!-- /.col-lg-6 (nested) -->
 					</div>

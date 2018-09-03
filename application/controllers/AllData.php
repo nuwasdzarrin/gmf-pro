@@ -25,12 +25,30 @@
 
      //update all data
      public function upAllData() {
-        $id_change = $this->input->post('change_no');
+        $id_change = $this->input->post('id_change');
         $sta = array(
             'engineer' => $this->input->post('engineer'),
             'rev_no' => $this->input->post('rev_no'),
             'send_ga' => $this->input->post('send_ga'),
             'recei_ga' => $this->input->post('recei_ga'),
+            'att' => $this->input->post('att'),
+        );
+        $this->M_AllData->upd($sta, $id_change);
+        redirect (site_url('alldata'));
+     }
+
+     //load edit link all data page
+     public function edLink() {
+        $id = $this->uri->segment(4);
+        $change_no = $this->uri->segment(3);
+        $data['link'] = $id;
+        $data['change_no'] = $change_no;
+        $this->template->load('v_static','V_edLink', $data);
+     }
+     //upload link all data
+     public function upLink() {
+        $id_change = $this->input->post('id_change');
+        $sta = array(
             'att' => $this->input->post('att'),
         );
         $this->M_AllData->upd($sta, $id_change);

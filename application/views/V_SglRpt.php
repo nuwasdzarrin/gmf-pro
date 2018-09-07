@@ -32,7 +32,6 @@
 			Engineering & Maintenance
 		</div>
 		<button id="non_print" onclick="javascript:window.print()" class="btn btn-primary" style="margin-right: 10px;">Print</button>
-		<a href="<?php echo site_url('SgReport/laporan_pdf/'.$one->item_no.'/'.$one->id);?>" id="non_print" class="btn btn-success" style="margin-right: 10px;">Download</a>
 		<a href="<?php echo site_url('alldata');?>" id="non_print" class="btn btn-warning">Back to All Data</a>
 		<div class="row">
 			<div class="change-no">
@@ -71,7 +70,12 @@
 							</td>
 							<td><?PHP echo $chang->task_code; ?></td>
 							<td><?PHP echo $chang->ac_eff; ?></td>
-							<td>10 Y</td>
+							<td>
+								<p>THRESHOLD : </p>
+								<?PHP echo $chang->threshold; ?>
+								<p>REPETITIVE : </p>
+								<?PHP echo $chang->repetitive; ?>
+							</td>
 							<td>
 								<?PHP echo $chang->sg_code; ?><br>
 								<?PHP echo $chang->sg_num; ?>

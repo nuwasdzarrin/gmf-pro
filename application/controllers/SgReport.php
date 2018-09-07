@@ -13,12 +13,17 @@ class SgReport extends CI_Controller {
    public function single() { //fungsi load report from all data
       $id = $this->input->post('id');
       $item_no = $this->input->post('item_no');
+      if (!$item_no) {
+        echo '<script>alert("Camp Item Number Not Available. Document cant be printed");</script>';
+        redirect (site_url('alldata'.$item_no),'refresh');  //ke form revisi
+      } else {
       $result = $this->M_SgReport->statis($id); //akses Statis Data to header table
         $plane = $result->ac_type;
       $data['ac_cod'] = $this->M_SgReport->acCode($plane); //akses Function A/C Code
       $data['one'] = $result;
-      $data['cha'] = $this->M_SgReport->mSgl($id,$item_no); //akses Function Single Data
+      $data['cha'] = $this->M_SgReport->mSgl($id,$item_no); //akses 2/1 Content
       $this->load->view('V_SglRpt', $data);
+      }
     }
 
     public function InEd() {  //fungsi load report from edit and input
@@ -27,39 +32,7 @@ class SgReport extends CI_Controller {
         $plane = $result->ac_type;
       $data['ac_cod'] = $this->M_SgReport->acCode($plane); //akses Function A/C Code
       $data['one'] = $result;
-      $data['cha'] = $this->M_SgReport->mInEd($item_no); //akses Function Single Data
+      $data['cha'] = $this->M_SgReport->mInEd($item_no); //akses 2/1 content
       $this->load->view('V_SglRpt', $data);
-    }
-
-    public function laporan_pdf(){
-      
-      $id = $this->uri->segment(4);
-      $item_no = $this->uri->segment(3);
-      $result = $this->M_SgReport->statis($id); //akses Statis Data to header table
-        $plane = $result->ac_type;
-      $data['ac_cod'] = $this->M_SgReport->acCode($plane); //akses Function A/C Code
-      $data['one'] = $result;
-      $data['cha'] = $this->M_SgReport->mSgl($id,$item_no); //akses Function Single Data
-      
-      $this->load->view('V_Download', $data);
-        
-        // Get output html
-        $html = $this->output->get_output();
-        
-        // Load pdf library
-        $this->load->library('pdf');
-        
-        // Load HTML content
-        $this->dompdf->loadHtml($html);
-        
-        // (Optional) Setup the paper size and orientation
-        $this->dompdf->setPaper('A4', 'landscape');
-        
-        // Render the HTML as PDF
-        $this->dompdf->render();
-        
-        // Output the generated PDF (1 = download and 0 = preview)
-        $this->dompdf->stream("welcome.pdf", array("Attachment"=>0));
-
     }
 }

@@ -13,10 +13,10 @@
          $valid->set_rules('password','Password','required');
  
          if($valid->run()) {
-             $this->simple_login->login($username,$password, base_url('alldata'), base_url('login'));
+             $this->simple_login->login($username,$password, site_url('alldata'), site_url('login'));
          }
          // End fungsi login
-         $this->load->view('account/v_log');
+         $this->load->view('account/v_logi');
      }
  
      public function logout(){

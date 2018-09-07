@@ -9,26 +9,34 @@ class InData extends CI_Controller {
 		$this->load->model('M_AllData');
 	}
 
-     //Load one or two data latest
+     /*Load one or two data latest*/
 	public function index() {
-		$this->template->load('v_static','V_InData');
+		$this->template->load('member/v_static','V_InData');
 	}
 
 	public function input() {
-		$item_no = $this->input->post('item_no');
-		$cek = $this->db->select('item_no')->from('dt_change')
-		->where('item_no',$item_no)->get()->num_rows();
-		
-        if (!$cek) {	//cek jika item_no sudah ada, arahkan ke form revisi
+		/*function for make a token*/
+		function random($leng)  
+	    {  
+	     $kar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';  
+	     $string = '';  
+	     for($i = 0; $i < $leng; $i++) {  
+	      $pos = rand(0, strlen($kar)-1);  
+	      $string .= $kar{$pos};  
+	     }  
+	     return $string;  
+	    }
+		$token = random(10);
 		$data = array(
-			'item_no' => $item_no,
+			'token' => $token,
 			'rvcd' => 'N',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
 			'eff_date' => $this->input->post('eff_date'),
 			'qty' => $this->input->post('qty'),
 			'ac_type' => $this->input->post('ac_type'),
-			'intv' => $this->input->post('intv'),
+			'threshold' => $this->input->post('threshold'),
+			'repetitive' => $this->input->post('repetitive'),
 			'resp' => $this->input->post('resp'),
 			'part_no' => $this->input->post('part_no'),
 			'comp' => $this->input->post('comp'),
@@ -41,23 +49,13 @@ class InData extends CI_Controller {
 			'reason' => $this->input->post('reason'),
 			'support_doc' => $this->input->post('support_doc')
 		);
-		//input to table dt_change
+		$dta = array('token' => $token,'engineer' => $this->session->userdata('username'));
+		/*input to table dt_change*/
 		$this->M_InData->input($data);
-		//input to table dt_control
-		$lt_id = $this->db->select('id')->from('dt_change')
-		->where('item_no',$item_no)->order_by('id','desc')
-		->limit(1)->get()->row();
-		$dta = array('id_change' => $lt_id->id,'engineer' => $this->session->userdata('username'));
+		/*input to table dt_control*/
 		$this->M_AllData->inp($dta); 
 
-		redirect (site_url('SgReport/InEd/'.$item_no));
-		}else{
-			echo '<script>alert("Camp Item Number are Available. Continue with Revision Page");</script>';
-			redirect (site_url('EdData/fromCek/'.$item_no),'refresh');	//ke form revisi
-		}
-	}
-
-	public function lo_edit() {
-		$this->template->load('v_static','V_EdData');
+		redirect (site_url('alldata'));
+		
 	}
 }

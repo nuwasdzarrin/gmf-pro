@@ -57,9 +57,9 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i><?php echo $this->session->userdata('username') ?></a>
-                        </li>
+                </li>
                 <li><a href="<?php echo ('login/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                </li>
                 <!-- /.dropdown -->
             </ul>
             <!-- /.navbar-top-links -->
@@ -71,66 +71,90 @@
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Revisi<span class="fa arrow"></span></a>
+                            <a href="<?php echo site_url('alldata');?>"><i class="fa fa-table fa-fw"></i> All Data</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('indata');?>"><i class="fa fa-file-o fa-fw"></i> New Data</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Revisi<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li class="sidebar-search">
                                 	<div class="input-group custom-search-form">
-                                    <form method="post" action="<?php echo site_url('eddata')?>" enctype="multipart/form-data">
-                                        <input type="text" class="form-control" name="item_no" placeholder="Enter Camp Item...">
-    	                                <span class="input-group-btn">
-    	                                <button class="btn btn-default" type="submit">
-    	                                    <i class="fa fa-search"></i>
-    	                                </button>
-                                        </span>
-                                    </form>
-	                            	</div>
+                                        <form method="post" action="<?php echo site_url('eddata')?>" enctype="multipart/form-data">
+                                            <input type="text" class="form-control" name="item_no" placeholder="Enter Camp Item...">
+                                            <span class="input-group-btn">
+                                             <button class="btn btn-default" type="submit">
+                                                 <i class="fa fa-search"></i>
+                                             </button>
+                                            </span>
+                                        </form>
+                                    </div>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="<?php echo site_url('indata');?>"><i class="fa fa-edit fa-fw"></i> New Data</a>
+                            <a href="#"><i class="fa fa-trash fa-fw"></i> Delete<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li class="sidebar-search">
+                                    <div class="input-group custom-search-form">
+                                        <form method="post" action="<?php echo site_url('deldata')?>" enctype="multipart/form-data">
+                                            <input type="text" class="form-control" name="item_no" placeholder="Enter Camp Item...">
+                                            <span class="input-group-btn">
+                                             <button class="btn btn-default" type="submit">
+                                                 <i class="fa fa-search"></i>
+                                             </button>
+                                            </span>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="<?php echo site_url('alldata');?>"><i class="fa fa-table fa-fw"></i> All Data</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
+
+
+                    <!-- <li>
+                        <a href="<?php echo site_url('alldata/arsip');?>"><i class="fa fa-file-archive-o fa-fw"></i> Arsip</a>
+                    </li> -->
+                    <li>
+                        <a href="<?php echo site_url('user');?>"><i class="fa fa-user fa-fw"></i> User</a>
+                    </li>
+                </ul>
             </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <?php echo $contents;?>
-
+            <!-- /.sidebar-collapse -->
         </div>
-    <!-- /#wrapper -->
+        <!-- /.navbar-static-side -->
+    </nav>
 
-    <!-- jQuery -->
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/jquery/jquery.min.js"></script>
+    <?php echo $contents;?>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<!-- /#wrapper -->
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- jQuery -->
+<script src="<?php echo base_url();?>/assets/adminast/vendor/jquery/jquery.min.js"></script>
 
-    <!-- DataTables JavaScript -->
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>/assets/adminast/vendor/datatables-responsive/dataTables.responsive.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="<?php echo base_url();?>/assets/adminast/vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="<?php echo base_url();?>/assets/adminast/dist/js/sb-admin-2.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="<?php echo base_url();?>/assets/adminast/vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-    <script>
+<!-- DataTables JavaScript -->
+<script src="<?php echo base_url();?>/assets/adminast/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>/assets/adminast/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo base_url();?>/assets/adminast/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="<?php echo base_url();?>/assets/adminast/dist/js/sb-admin-2.js"></script>
+
+<!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
     });
-    </script>
+</script>
 
 </body>
 

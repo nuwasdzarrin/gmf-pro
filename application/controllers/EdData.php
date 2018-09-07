@@ -8,14 +8,21 @@ class EdData extends CI_Controller {
 		$this->load->model('M_InData');
 	}
 
-     //Load latest data from seaching
+     /*Load latest data from seaching*/
 	public function index() {
 		$item_no = $this->input->post('item_no');
-		$data['edd'] = $this->M_InData->lo_edData($item_no);
-		$this->template->load('v_static','V_EdData', $data);
+		$result = $this->M_InData->lo_edData($item_no);
+		if ($result) {
+			$data['edd'] = $result;
+			$this->template->load('member/v_static','V_EdData', $data);
+		}else{
+			echo '<script>alert("Camp Item Number not Available. Entry new data");</script>';
+            redirect (site_url('indata'),'refresh');
+		}
+		
 		
 	}
-	//Load latest data from Cek
+	/*Load latest data from all data page==belum dipakai*/
 	public function fromCek() {
 		$item_no = $this->uri->segment(3);
 		$data['edd'] = $this->M_InData->lo_edData($item_no);
@@ -28,16 +35,30 @@ class EdData extends CI_Controller {
 		$last_id = $this->db->select('id')->from('dt_change')
 		->where('item_no',$item_no)->order_by('id','desc')
 		->limit(1)->get()->row();
+
+		function random($leng)  
+		{  
+			$kar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';  
+			$string = '';  
+			for($i = 0; $i < $leng; $i++) {  
+				$pos = rand(0, strlen($kar)-1);  
+				$string .= $kar{$pos};  
+			}  
+			return $string;  
+		}
+		$token = random(10);
 		
 		$data = array(
 			'item_no' => $item_no,
+			'token' => $token,
 			'rvcd' => 'R',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
 			'eff_date' => $this->input->post('eff_date'),
 			'qty' => $this->input->post('qty'),
 			'ac_type' => $this->input->post('ac_type'),
-			'intv' => $this->input->post('intv'),
+			'threshold' => $this->input->post('threshold'),
+			'repetitive' => $this->input->post('repetitive'),
 			'resp' => $this->input->post('resp'),
 			'part_no' => $this->input->post('part_no'),
 			'comp' => $this->input->post('comp'),
@@ -50,27 +71,16 @@ class EdData extends CI_Controller {
 			'reason' => $this->input->post('reason'),
 			'support_doc' => $this->input->post('support_doc')
 		);
-		//input to table dt_change		
+		/*input to table dt_change*/
 		$sta = array('sta' => 'OLD');
 		$this->M_InData->update($sta,$last_id->id);
 		$this->M_InData->input($data);
 
-		//input to table dt_control
-		$lt_id = $this->db->select('id')->from('dt_change')
-		->where('item_no',$item_no)->order_by('id','desc')
-		->limit(1)->get()->row();
-		$dta = array('id_change' => $lt_id->id,'engineer' => $this->session->userdata('username'));
+		/*input to table dt_control*/
+		$dta = array('token' => $token,'engineer' => $this->session->userdata('username'));
 		$this->load->model('M_AllData');
 		$this->M_AllData->inp($dta);
 
 		redirect (site_url('SgReport/InEd/'.$item_no));
-	}
-
-	public function del() {		//update RVCD jadi Del or D
-		$id = $this->input->post('id');
-				
-		$rvcd = array('rvcd' => 'D');
-		$this->M_InData->upd_rvcd($rvcd,$id);
-		redirect (site_url('alldata'));
 	}
 }

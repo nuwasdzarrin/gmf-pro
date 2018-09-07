@@ -7,4 +7,12 @@
        {
             $this->db->insert('users',$data);
        }
+
+       function alluser(){
+       	return $this->db->get('users');
+       }
+
+       function delete($cond){
+        $this->db->delete('users', $cond);
+       }
   }

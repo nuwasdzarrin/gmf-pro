@@ -14,7 +14,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<form role="form" enctype="multipart/form-data" method="post" action="<?php echo site_url('AllData/upLink')?>">
+						<form role="form" enctype="multipart/form-data" method="post" action="<?php echo site_url('member/AllData/upLink')?>">
 							<div class="col-lg-6">
 								<div class="form-group">
                                     <label for="disabledSelect">Change No</label>

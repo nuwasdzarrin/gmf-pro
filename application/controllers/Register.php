@@ -18,7 +18,7 @@
          $this->form_validation->set_rules('password','PASSWORD','required');
          $this->form_validation->set_rules('password_conf','PASSWORD','required|matches[password]');
          if($this->form_validation->run() == FALSE) {
-             $this->load->view('account/v_register');
+             $this->template->load('v_static','V_addUser');
          }else{
  
              $data['id_employee']   =    $this->input->post('name');
@@ -28,9 +28,8 @@
  
              $this->m_account->daftar($data);
              
-             $pesan['message'] =    "Pendaftaran berhasil";
-             
-             $this->load->view('account/v_success',$pesan);
+            echo '<script>alert("successful registration. Back to the page of all users");</script>';
+            redirect (site_url('user'),'refresh');
          }
      }
  }

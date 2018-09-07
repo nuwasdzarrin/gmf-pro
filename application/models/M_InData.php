@@ -15,12 +15,6 @@ class M_InData extends CI_Model{
 		return TRUE;
 	}
 
-	function upd_rvcd($rvcd,$id)	//Update Rvcd dengan Del or D
-	{
-		$this->db->where('id',$id)->update($this->tbl, $rvcd);
-		return TRUE;
-	}
-
 	public function lo_edData($item_no){	//loading form edit data
 		$data=$this->db->select('*')
 						->from($this->tbl)
@@ -30,13 +24,4 @@ class M_InData extends CI_Model{
 						->get()->row();
 		return $data;
 	}	
-
-/*	function lo_edit($id)
-	{
-		$data=$this->db->select('id, item_no, ac_type, eff_date, rvcd, sta')
-						->from($this->tbl)
-						->where('id',$id)
-						->get()->row();
-		return $data;
-	}*/
 }

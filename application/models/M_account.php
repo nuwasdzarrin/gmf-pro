@@ -15,4 +15,8 @@
        function delete($cond){
         $this->db->delete('users', $cond);
        }
+
+       function update($data,$id){
+        $this->db->where('id_user',$id)->update('users', $data);
+       }
   }

@@ -66,7 +66,7 @@ p.Rejected {
                                 <tr class="odd-gradeX">
                                     <?php $change_no=$all->code_pla."-".$all->id;?>
                                     <td><?php echo $change_no; ?></td>
-                                    <td><?php echo $all->eff_date;?></td>
+                                    <td><?php echo $all->intime;?></td>
                                     <td class="center">
                                         <?php if($all->item_no){ ?>
                                             <?php echo $all->item_no;?>
@@ -81,10 +81,9 @@ p.Rejected {
                                     <td class="center"><?php echo $all->recei_ga;?></td>
                                     <td class="center">
                                         <?php if($all->att){ ?>
-                                            <a href="<?php echo $all->att;?>"><?php echo $all->att;?></a>
+                                            <a href="<?php echo base_url('assets/pdf/'.$all->att);?>"><?php echo $all->att; ?></a>
                                         <?php } else { ?>
-                                            <button class="add-link btn btn-info fa fa-link" data-id="<?php echo $all->token;?>" data-change="<?php echo $change_no;?>" title="Add Link Document"> </button>
-                                            <a href="#" class="btn btn-success fa fa-upload" title="upload file"></a>
+                                            <button class="add-link btn btn-success fa fa-upload" data-id="<?php echo $all->idd;?>" data-change="<?php echo $change_no;?>" title="Upload File"> </button>
                                         <?php } ?>
                                     </td>
                                     <td class="center"><p class="status <?php echo $all->status;?>"><?php echo $all->status;?></p></td>
@@ -126,7 +125,7 @@ p.Rejected {
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo site_url('alldata/addItemNo')?>">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="<?php echo site_url('alldata/addItemNo')?>">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">Change No:</label>
                         <div class="col-sm-8">
@@ -163,7 +162,7 @@ p.Rejected {
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo site_url('alldata/upLink')?>">
+                <form class="form-horizontal" role="form" enctype="multipart/form-data" method="POST" action="<?php echo site_url('alldata/upLink')?>">
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">Change No:</label>
                         <div class="col-sm-8">
@@ -173,8 +172,8 @@ p.Rejected {
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="content">Link Attachment:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="att">
-                            <input type="hidden" class="form-control" id="id" value="id" name="token">
+                            <input type="file" class="form-control" name="pdf">
+                            <input type="hidden" class="form-control" id="id" value="id" name="idd">
                         </div>
                     </div>
                     <div class="modal-footer">

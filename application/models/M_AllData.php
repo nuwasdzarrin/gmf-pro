@@ -7,8 +7,8 @@ class M_AllData extends CI_Model {
 	var $tabel = 'dt_control';
 
 	public function AllData(){
-		$data=$this->db->select('dt_change.id, item_no, ac_type, eff_date, rvcd, status,
-						 code_pla, idd, engineer, rev_no, send_ga, recei_ga, att')
+		$data=$this->db->select('dt_change.id, item_no, ac_type, rvcd, status,
+						 code_pla, idd, engineer, rev_no, send_ga, recei_ga, att, intime')
 						->from($this->tbl)
 						->join('cod_plane', 'cod_plane.name_pla = dt_change.ac_type')
 						->join('dt_control', 'dt_control.token = dt_change.token')
@@ -17,8 +17,8 @@ class M_AllData extends CI_Model {
 	}
 
 	public function arsip(){
-		$data=$this->db->select('dt_change.id, dt_change.token, item_no, ac_type, eff_date, rvcd,
-						 status, code_pla, idd, engineer, rev_no, send_ga, recei_ga, att')
+		$data=$this->db->select('dt_change.id, dt_change.token, item_no, ac_type, rvcd,
+						 status, code_pla, idd, engineer, rev_no, send_ga, recei_ga, att, intime')
 						->from($this->tbl)
 						->join('cod_plane', 'cod_plane.name_pla = dt_change.ac_type')
 						->join('dt_control', 'dt_control.token = dt_change.token')

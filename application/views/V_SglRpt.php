@@ -28,14 +28,21 @@
 <body>
 	<div class="container-fluid">
 		<div class="logo">
-			<img src="<?php echo base_url();?>assets/adminast/report/GI.png">
-			Engineering & Maintenance
+			<?php 
+			$cplane = $ac_cod->code_pla;
+			if ($cplane == 'A2' || $cplane == 'B3-MG' || $cplane == 'B3') { ?>
+				<img src="<?php echo base_url();?>assets/adminast/report/citilink.png">
+			<?php	}else{	?>
+				<img src="<?php echo base_url();?>assets/adminast/report/GI.png">
+				Engineering & Maintenance
+			<?php	}	?>
+			
 		</div>
 		<button id="non_print" onclick="javascript:window.print()" class="btn btn-primary" style="margin-right: 10px;">Print</button>
 		<a href="<?php echo site_url('alldata');?>" id="non_print" class="btn btn-warning">Back to All Data</a>
 		<div class="row">
 			<div class="change-no">
-				CHANGE NO : <?PHP echo $ac_cod->code_pla."-".$one->id; ?>
+				CHANGE NO : <?PHP echo $cplane."-".$one->id; ?>
 			</div>
 		</div>
 		<div class="row">
@@ -123,7 +130,13 @@
 				</table>
 			</div>
 		</div>
-		<footer>Form: MZ-3-13 (06-08)</footer>
+		<footer>
+			<?php if ($cplane == 'A2' || $cplane == 'B3-MG' || $cplane == 'B3') { ?>
+				Form: CT-3-13 (06-08)
+			<?php	}else{	?>
+				Form: MZ-3-13 (06-08)
+			<?php	}	?>
+		</footer>
 	</div>
 </body>
 </html>

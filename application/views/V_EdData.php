@@ -20,6 +20,7 @@
 									<label for="disabledSelect">Camp Item No</label>
 									<input class="form-control" id="disabledInput" type="text" value="<?php echo $edd->item_no;?>" style="width: 150px" disabled>
 									<input type="hidden" name="item_no" value="<?php echo $edd->item_no;?>">
+									<input type="hidden" name="token" value="<?php echo $edd->token;?>">
 								</div>
 								<div class="form-group">
 									<label>Description</label>

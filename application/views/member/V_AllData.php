@@ -66,7 +66,7 @@ p.Rejected {
                                 <tr class="odd-gradeX">
                                     <?php $change_no=$all->code_pla."-".$all->id;?>
                                     <td><?php echo $change_no; ?></td>
-                                    <td><?php echo $all->eff_date;?></td>
+                                    <td><?php echo $all->intime;?></td>
                                     <td class="center">
                                         <?php if($all->item_no){ ?>
                                             <?php echo $all->item_no;?>

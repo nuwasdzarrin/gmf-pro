@@ -25,6 +25,7 @@
              $data['username'] =    $this->input->post('username');
              $data['email']  =    $this->input->post('email');
              $data['password'] =    md5($this->input->post('password'));
+             $data['role'] =    $this->input->post('rolea');
  
              $this->m_account->daftar($data);
              

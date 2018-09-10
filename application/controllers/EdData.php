@@ -22,16 +22,9 @@ class EdData extends CI_Controller {
 		
 		
 	}
-	/*Load latest data from all data page==belum dipakai*/
-	public function fromCek() {
-		$item_no = $this->uri->segment(3);
-		$data['edd'] = $this->M_InData->lo_edData($item_no);
-		$this->template->load('v_static','V_EdData', $data);
-		
-	}
-
 	public function update() {
 		$item_no = $this->input->post('item_no');
+		$tkn_lama = $this->input->post('token');
 		$last_id = $this->db->select('id')->from('dt_change')
 		->where('item_no',$item_no)->order_by('id','desc')
 		->limit(1)->get()->row();
@@ -73,7 +66,7 @@ class EdData extends CI_Controller {
 		);
 		/*input to table dt_change*/
 		$sta = array('sta' => 'OLD');
-		$this->M_InData->update($sta,$last_id->id);
+		$this->M_InData->update($sta,$token);
 		$this->M_InData->input($data);
 
 		/*input to table dt_control*/

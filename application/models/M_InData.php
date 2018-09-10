@@ -9,9 +9,9 @@ class M_InData extends CI_Model{
 		return TRUE;
 	}
 
-	function update($data,$last_id)	//revisi data dengan baris baru
+	function update($data,$token)	//revisi data dengan baris baru
 	{
-		$this->db->where('id',$last_id)->update($this->tbl, $data);
+		$this->db->where('token',$token)->update($this->tbl, $data);
 		return TRUE;
 	}
 

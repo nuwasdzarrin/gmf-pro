@@ -41,7 +41,7 @@ p.Rejected {
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    DataTables Advanced Tables
+                    All data
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -129,13 +129,13 @@ p.Rejected {
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">Change No:</label>
                         <div class="col-sm-8">
-                            <input type="name" class="form-control" id="title_show" disabled>
+                            <input type="name" class="form-control" id="title_show" style="width: 150px" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="content">Camp Item No:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="item_no">
+                            <input type="text" class="form-control" name="item_no" style="width: 200px;">
                             <input type="hidden" class="form-control" id="id_show" value="id_show" name="id">
                         </div>
                     </div>
@@ -166,11 +166,11 @@ p.Rejected {
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">Change No:</label>
                         <div class="col-sm-8">
-                            <input type="name" class="form-control" id="change" disabled>
+                            <input type="name" class="form-control" id="change" style="width: 150px" disabled>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="content">Link Attachment:</label>
+                        <label class="control-label col-sm-3" for="content">Upload PDF:</label>
                         <div class="col-sm-8">
                             <input type="file" class="form-control" name="pdf">
                             <input type="hidden" class="form-control" id="id" value="id" name="idd">
@@ -178,7 +178,7 @@ p.Rejected {
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">
-                            <span class='glyphicon glyphicon-ok'></span> Update
+                            <span class='glyphicon glyphicon-ok'></span> Upload
                         </button>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">
                             <span class='glyphicon glyphicon-remove'></span> Close

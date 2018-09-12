@@ -18,7 +18,7 @@
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="disabledSelect">Change No</label>
-									<input class="form-control" id="disabledInput" type="text" value="<?php echo $change_no;?>" disabled>
+									<input class="form-control" id="disabledInput" type="text" style="width: 150px;" value="<?php echo $change_no;?>" disabled>
 									<input type="hidden" name="idd" value="<?php echo $all->idd;?>">
 								</div>
 								<div class="form-group">
@@ -48,15 +48,15 @@
 								</div>
 								<div class="form-group">
 									<label>Sent To Garuda</label>
-									<input type="date" class="form-control" name="send_ga" value="<?php echo $all->send_ga;?>">
+									<input type="date" class="form-control" name="send_ga" value="<?php echo $all->send_ga;?>" style="width: 250px;">
 								</div>
 								<div class="form-group">
 									<label>Receive From Garuda</label>
-									<input type="date" class="form-control" name="recei_ga" value="<?php echo $all->recei_ga;?>">
+									<input type="date" class="form-control" name="recei_ga" value="<?php echo $all->recei_ga;?>" style="width: 250px;">
 								</div>
 								<div class="form-group">
 									<label></label>
-									<button type="submit" class="btn btn-success" style="float: right;">Update</button>
+									<button type="submit" class="btn btn-success">Update</button>
 								</div>
 							</div>
 							<!-- /.col-lg-6 (nested) -->

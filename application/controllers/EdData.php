@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class EdData extends CI_Controller {
 	function __construct(){
@@ -25,10 +26,7 @@ class EdData extends CI_Controller {
 	public function update() {
 		$item_no = $this->input->post('item_no');
 		$tkn_lama = $this->input->post('token');
-		$last_id = $this->db->select('id')->from('dt_change')
-		->where('item_no',$item_no)->order_by('id','desc')
-		->limit(1)->get()->row();
-
+		
 		function random($leng)  
 		{  
 			$kar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';  
@@ -66,11 +64,15 @@ class EdData extends CI_Controller {
 		);
 		/*input to table dt_change*/
 		$sta = array('sta' => 'OLD');
-		$this->M_InData->update($sta,$token);
+		$this->M_InData->update($sta,$tkn_lama);
 		$this->M_InData->input($data);
 
 		/*input to table dt_control*/
-		$dta = array('token' => $token,'engineer' => $this->session->userdata('username'));
+		$dta = array(
+			'token' => $token,
+			'engineer' => $this->session->userdata('username'),
+			'intime' => $time = date('Y-m-d H:i:s')
+		);
 		$this->load->model('M_AllData');
 		$this->M_AllData->inp($dta);
 

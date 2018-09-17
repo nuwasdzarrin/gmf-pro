@@ -25,7 +25,7 @@
 				<form class="login100-form validate-form" method="post" action="<?php echo site_url('login');?>">
 					<?php echo form_open('login');?>
 					<span class="login100-form-title p-b-48">
-						<img src="<?php echo base_url();?>assets/login/gmf_logo.jpg" style="width: 320px; height: 80px;">
+						<img src="<?php echo base_url();?>assets/login/GMF.png" style="width: 250px; height: 60px;">
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid ID Employee is: 25001">

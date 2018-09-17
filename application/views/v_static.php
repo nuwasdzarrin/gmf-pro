@@ -51,10 +51,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                
                 <a class="navbar-brand" href="index.html">Welcome <?php echo $this->session->userdata('username') ?></a>
             </div>
             <!-- /.navbar-header -->
-
+            
+            <img src="<?php echo base_url();?>assets/login/GMF.png" style="width: 200px; height: 50px; margin: 10px 0 10px 200px;">
+                <img src="<?php echo base_url();?>assets/adminast/report/GI.png" style="width: 100px; height: 50px; margin: 10px 0 10px 20px;">
+                <img src="<?php echo base_url();?>assets/adminast/report/citilink.png" style="width: 200px; height: 50px; margin: 10px 0 10px 20px;">
+            
             <ul class="nav navbar-top-links navbar-right">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i><?php echo $this->session->userdata('username') ?></a>
                 </li>
@@ -67,9 +72,9 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li>
+                        <!-- <li>
                             <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="<?php echo site_url('alldata');?>"><i class="fa fa-table fa-fw"></i> All Data</a>
                         </li>

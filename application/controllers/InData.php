@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class InData extends CI_Controller {
 	function __construct(){
@@ -49,7 +50,12 @@ class InData extends CI_Controller {
 			'reason' => $this->input->post('reason'),
 			'support_doc' => $this->input->post('support_doc')
 		);
-		$dta = array('token' => $token,'engineer' => $this->session->userdata('username'));
+		$dta = array(
+			'token' => $token,
+			'engineer' => $this->session->userdata('username'),
+			'intime' => $time = date('Y-m-d H:i:s')
+		);
+		
 		/*input to table dt_change*/
 		$this->M_InData->input($data);
 		/*input to table dt_control*/

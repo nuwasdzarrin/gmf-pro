@@ -30,7 +30,7 @@ class User extends CI_Controller {
 			'id_employee' => $this->input->post('id_employee'),
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
-			'password' => md5($this->input->post('email')),
+			'password' => md5($this->input->post('password')),
 			'role' => $this->input->post('role'),
 		);
         $this->M_account->update($edt,$this->input->post('id'));

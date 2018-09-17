@@ -72,4 +72,16 @@ class M_SgReport extends CI_Model {
 							->row();
 		return $cdpla;
 	}
+
+	public function mDeploy($id,$item){	//model akses report from all_view
+		$cond = "item_no=$item AND id<=$id"; //kondisi where
+		$jml = $this->db->get_where($this->tbl, $cond)->num_rows();//jumlah maksimal data terecord
+		
+			$sgdata = $this->db->select('*')
+							->from($this->tbl)	//jika data >1
+							->order_by('item_no','ASC')
+							->get();
+		
+		return $sgdata;
+	}
 }

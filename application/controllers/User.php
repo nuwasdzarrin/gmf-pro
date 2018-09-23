@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	function __construct(){
          parent::__construct();
          $this->simple_login->cek_login();
-          $this->simple_login->cek_role();
+          $this->simple_login->cek_admin();
          $this->load->model('M_account');
      }
 	public function index()
@@ -30,6 +30,7 @@ class User extends CI_Controller {
 			'id_employee' => $this->input->post('id_employee'),
 			'username' => $this->input->post('username'),
 			'email' => $this->input->post('email'),
+			'unit' => $this->input->post('unit'),
 			'password' => md5($this->input->post('password')),
 			'role' => $this->input->post('role'),
 		);

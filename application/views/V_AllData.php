@@ -41,16 +41,16 @@ p.Rejected {
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    All data
+                    
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                                <th>Change No</th>
                                 <th>Date</th>
-                                <th>CAMP No</th>
+                                <th>Change No</th>
+                                <th>MP No</th>
                                 <th>RVCD</th>
                                 <th>Engineer</th>
                                 <th>Rev No</th>
@@ -64,14 +64,14 @@ p.Rejected {
                         <tbody>
                             <?php foreach ($alldt->result() as $all) { ?>
                                 <tr class="odd-gradeX">
-                                    <?php $change_no=$all->code_pla."-".$all->id;?>
-                                    <td><?php echo $change_no; ?></td>
+                                    <?php $change_no=$all->code_pla."-".$all->numb;?>
                                     <td><?php echo $all->intime;?></td>
+                                    <td><?php echo $change_no; ?></td>
                                     <td class="center">
                                         <?php if($all->item_no){ ?>
                                             <?php echo $all->item_no;?>
                                         <?php } else { ?>
-                                            <button class="show-modal btn btn-primary fa fa-plus" data-id="<?php echo $all->token;?>" data-change="<?php echo $change_no;?>" title="Add Camp Item Number"></button>
+                                            <button class="show-modal btn btn-success fa fa-plus" data-id="<?php echo $all->token;?>" data-change="<?php echo $change_no;?>" title="Add MP Item Number"></button>
                                         <?php } ?>
                                     </td>
                                     <td class="center"><?php echo $all->rvcd;?></td>
@@ -81,7 +81,8 @@ p.Rejected {
                                     <td class="center"><?php echo $all->recei_ga;?></td>
                                     <td class="center">
                                         <?php if($all->att){ ?>
-                                            <a href="<?php echo base_url('assets/pdf/'.$all->att);?>"><?php echo $all->att; ?></a>
+                                            <a href="<?php echo base_url('assets/pdf/'.$all->att);?>" class="btn btn-info fa fa-file-pdf-o" title="Lihat Dokumen"></a>
+                                            <a href="<?php echo site_url('alldata/delfile/'.$all->idd.'/'.$all->att);?>" class="btn btn-danger fa fa-trash" title="Hapus Dokumen"></a>
                                         <?php } else { ?>
                                             <button class="add-link btn btn-success fa fa-upload" data-id="<?php echo $all->idd;?>" data-change="<?php echo $change_no;?>" title="Upload File"> </button>
                                         <?php } ?>
@@ -91,7 +92,7 @@ p.Rejected {
                                         <form method="POST" action="<?php echo site_url('SgReport/single')?>">
                                             <input type="hidden" name="id" value="<?php echo $all->id;?>">
                                             <input type="hidden" name="item_no" value="<?php echo $all->item_no;?>">
-                                            <button type="submit" title="Print Data" class="btn btn-danger fa fa-print" ></button>
+                                            <button type="submit" title="Print Data" class="btn btn-primary fa fa-print" ></button>
                                         </form>
                                         <form method="POST" action="<?php echo site_url('alldata/edAllData')?>">
                                             <input type="hidden" name="id" value="<?php echo $all->idd;?>">
@@ -133,9 +134,9 @@ p.Rejected {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-3" for="content">Camp Item No:</label>
+                        <label class="control-label col-sm-3" for="content">MP Item No:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" name="item_no" style="width: 200px;">
+                            <input type="text" class="form-control" maxlength="10" name="item_no" style="width: 200px;">
                             <input type="hidden" class="form-control" id="id_show" value="id_show" name="id">
                         </div>
                     </div>
@@ -193,7 +194,7 @@ p.Rejected {
 <script type="text/javascript">
     //js for modal add camp no
     $(document).on('click', '.show-modal', function() {
-        $('.modal-title').text('Add Camp Item No');
+        $('.modal-title').text('Add MP Item No');
         $('#id_show').val($(this).data('id'));
         $('#title_show').val($(this).data('change'));
         $('#showModal').modal('show');

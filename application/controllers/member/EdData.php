@@ -2,47 +2,57 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
-class InData extends CI_Controller {
+class EdData extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->simple_login->cek_login();
-		$this->simple_login->cek_admin();
+		$this->simple_login->cek_member();
 		$this->load->model('M_InData');
-		$this->load->model('M_AllData');
 	}
 
-     /*Load one or two data latest*/
+     /*Load latest data from seaching*/
 	public function index() {
-		$this->template->load('v_static','V_InData');
+		$item_no = $this->input->post('item_no');
+		$result = $this->M_InData->lo_edData($item_no);
+		if ($result) {
+			$data['edd'] = $result;
+			$this->template->load('member/v_static','member/V_EdData', $data);
+		}else{
+			echo '<script>alert("Camp Item Number not Available. Entry new data");</script>';
+            redirect (site_url('member/indata'),'refresh');
+		}
+		
+		
 	}
-
-	public function input() {
-		/*function for make a token*/
+	public function update() {
+		$item_no = $this->input->post('item_no');
+		
 		function random($leng)  
-	    {  
-	     $kar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';  
-	     $string = '';  
-	     for($i = 0; $i < $leng; $i++) {  
-	      $pos = rand(0, strlen($kar)-1);  
-	      $string .= $kar{$pos};  
-	     }  
-	     return $string;  
-	    }
+		{  
+			$kar = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz';  
+			$string = '';  
+			for($i = 0; $i < $leng; $i++) {  
+				$pos = rand(0, strlen($kar)-1);  
+				$string .= $kar{$pos};  
+			}  
+			return $string;  
+		}
 		$token = random(10);
 		$ac_type = $this->input->post('ac_type');
-      	$jml = $this->db->select('ac_type')->from('dt_change')
+		$jml = $this->db->select('ac_type')->from('dt_change')
       	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
-      	if (!$jml) {$numb = 1;}
-      	else {$numb+=1;}
+      	if (!$jml) $jml = 1;
+      	else $jml+=1;
 		$data = array(
+			'item_no' => $item_no,
 			'token' => $token,
-			'numb' => $numb,
-			'rvcd' => 'N',
+			'numb' => $jml,
+			'rvcd' => 'R',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
 			'eff_date' => $this->input->post('eff_date'),
 			'qty' => $this->input->post('qty'),
-			'ac_type' => $ac_type,
+			'ac_type' => $this->input->post('ac_type'),
 			'threshold' => $this->input->post('threshold'),
 			'repetitive' => $this->input->post('repetitive'),
 			'resp' => $this->input->post('resp'),
@@ -59,18 +69,17 @@ class InData extends CI_Controller {
 			'acc_by' => $this->input->post('acc_by'),
 			'no_peg' => $this->session->userdata('id_employee')
 		);
+		$this->M_InData->input($data);
+
+		/*input to table dt_control*/
 		$dta = array(
 			'token' => $token,
 			'engineer' => $this->session->userdata('username'),
 			'intime' => $time = date('Y-m-d H:i:s')
 		);
-		
-		/*input to table dt_change*/
-		$this->M_InData->input($data);
-		/*input to table dt_control*/
-		$this->M_AllData->inp($dta); 
+		$this->load->model('M_AllData');
+		$this->M_AllData->inp($dta);
 
-		redirect (site_url('alldata'));
-		
+		redirect (site_url('SgReport/InEd/'.$item_no));
 	}
 }

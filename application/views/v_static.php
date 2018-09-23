@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Engineering & Maintenance GMF-Aeroasia</title>
+    <title>Maintenance Program Change</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>/assets/adminast/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,12 +29,14 @@
     <!-- Custom Fonts -->
     <link href="<?php echo base_url();?>/assets/adminast/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="shortcut icon" href="<?php echo base_url();?>/assets/login/favicon.ico" type="image/x-icon"/>
+    <style type="text/css">
+        @media only screen and (max-width:800px){
+            #wrapper .navbar.navbar-default.navbar-static-top img{
+                display: none;
+            }
+        }
+    </style>
 
 </head>
 
@@ -52,11 +54,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand" href="index.html">Welcome <?php echo $this->session->userdata('username') ?></a>
+                <a class="navbar-brand" href="<?php echo site_url('alldata')?>">Maintenance Program Change</a>
             </div>
             <!-- /.navbar-header -->
             
-            <img src="<?php echo base_url();?>assets/login/GMF.png" style="width: 200px; height: 50px; margin: 10px 0 10px 200px;">
+            <img src="<?php echo base_url();?>assets/login/GMF.png" style="width: 200px; height: 50px; margin: 10px 0 10px 100px;">
                 <img src="<?php echo base_url();?>assets/adminast/report/GI.png" style="width: 100px; height: 50px; margin: 10px 0 10px 20px;">
                 <img src="<?php echo base_url();?>assets/adminast/report/citilink.png" style="width: 200px; height: 50px; margin: 10px 0 10px 20px;">
             
@@ -72,9 +74,6 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <!-- <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li> -->
                         <li>
                             <a href="<?php echo site_url('alldata');?>"><i class="fa fa-table fa-fw"></i> All Data</a>
                         </li>
@@ -87,7 +86,7 @@
                                 <li class="sidebar-search">
                                 	<div class="input-group custom-search-form">
                                         <form method="post" action="<?php echo site_url('eddata')?>" enctype="multipart/form-data">
-                                            <input type="text" class="form-control" name="item_no" placeholder="Enter Camp Item...">
+                                            <input type="text" class="form-control" style="width: 82%;" maxlength="10" name="item_no" placeholder="Enter Camp Item...">
                                             <span class="input-group-btn">
                                              <button class="btn btn-default" type="submit">
                                                  <i class="fa fa-search"></i>
@@ -104,7 +103,7 @@
                                 <li class="sidebar-search">
                                     <div class="input-group custom-search-form">
                                         <form method="post" action="<?php echo site_url('deldata')?>" enctype="multipart/form-data">
-                                            <input type="text" class="form-control" name="item_no" placeholder="Enter Camp Item...">
+                                            <input type="text" class="form-control" style="width: 82%;" maxlength="10" name="item_no" placeholder="Enter Camp Item...">
                                             <span class="input-group-btn">
                                              <button class="btn btn-default" type="submit">
                                                  <i class="fa fa-search"></i>

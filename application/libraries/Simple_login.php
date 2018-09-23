@@ -35,11 +35,12 @@
 
        if($query->num_rows() == 1) {
              //ambil data user berdasar username
-         $row = $this->CI->db->query('SELECT id_user,username,role FROM users where id_employee = "'.$id_employee.'"');
+         $row = $this->CI->db->query('SELECT id_user,username,role,unit FROM users where id_employee = "'.$id_employee.'"');
          $admin = $row->row();
          $id = $admin->id_user;
          $username = $admin->username;
          $role = $admin->role;
+         $unit = $admin->unit;
 
              //set session user
          $this->CI->session->set_userdata('role', $role);
@@ -47,6 +48,7 @@
          $this->CI->session->set_userdata('id_employee', $id_employee);
          $this->CI->session->set_userdata('id_login', uniqid(rand()));
          $this->CI->session->set_userdata('id', $id);
+         $this->CI->session->set_userdata('unit', $unit);
 
              //redirect ke halaman dashboard
          redirect(site_url('alldata'));
@@ -68,7 +70,7 @@
      public function cek_login() {
 
          //cek session username
-       if($this->CI->session->userdata('id_employee') == '') {
+       if($this->CI->session->userdata('id_login') == '') {
 
              //set notifikasi
          $this->CI->session->set_flashdata('sukses','Anda belum login');
@@ -78,11 +80,32 @@
        }
      }
 
-     public function cek_role() {
+     public function cek_logout() {
+
+         //cek session username
+       if($this->CI->session->userdata('id_login') != '') {
+
+             //set notifikasi
+         $this->CI->session->set_flashdata('sukses','Anda sudah login');
+
+             //alihkan ke halaman login
+         redirect(site_url('alldata'));
+       }
+     }
+
+     public function cek_admin() {
       if($this->CI->session->userdata('role') != 'ADMIN') {
 
        //alihkan ke halaman login
        redirect(site_url('member/alldata'));
+     }
+   }
+
+   public function cek_member() {
+      if($this->CI->session->userdata('role') != 'MEMBER') {
+
+       //alihkan ke halaman login
+       redirect(site_url('alldata'));
      }
    }
 
@@ -94,6 +117,10 @@
        $this->CI->session->unset_userdata('username');
        $this->CI->session->unset_userdata('id_login');
        $this->CI->session->unset_userdata('id');
+       $this->CI->session->unset_userdata('id_login');
+       $this->CI->session->unset_userdata('id_employee');
+       $this->CI->session->unset_userdata('role');
+       $this->CI->session->unset_userdata('unit');
        $this->CI->session->set_flashdata('sukses','Anda berhasil logout');
        redirect(site_url('login'));
      }

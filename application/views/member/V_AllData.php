@@ -41,16 +41,16 @@ p.Rejected {
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    DataTables Advanced Tables
+                    
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
-                                <th>Change No</th>
                                 <th>Date</th>
-                                <th>CAMP No</th>
+                                <th>Change No</th>
+                                <th>MP No</th>
                                 <th>RVCD</th>
                                 <th>Engineer</th>
                                 <th>Rev No</th>
@@ -64,9 +64,9 @@ p.Rejected {
                         <tbody>
                             <?php foreach ($alldt->result() as $all) { ?>
                                 <tr class="odd-gradeX">
-                                    <?php $change_no=$all->code_pla."-".$all->id;?>
-                                    <td><?php echo $change_no; ?></td>
+                                    <?php $change_no=$all->code_pla."-".$all->numb;?>
                                     <td><?php echo $all->intime;?></td>
+                                    <td><?php echo $change_no; ?></td>
                                     <td class="center">
                                         <?php if($all->item_no){ ?>
                                             <?php echo $all->item_no;?>
@@ -81,7 +81,7 @@ p.Rejected {
                                     <td class="center"><?php echo $all->recei_ga;?></td>
                                     <td class="center">
                                         <?php if($all->att){ ?>
-                                            <a href="<?php echo $all->att;?>"><?php echo $all->att;?></a>
+                                            <a href="<?php echo base_url('assets/pdf/'.$all->att);?>" class="btn btn-info fa fa-file-pdf-o" title="Lihat Dokumen"></a>
                                         <?php } else { ?>
                                             <p> - </p>
                                         <?php } ?>

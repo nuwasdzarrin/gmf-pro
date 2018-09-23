@@ -11,13 +11,14 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/login/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/login/css/main.css">
+	<link rel="shortcut icon" href="<?php echo base_url();?>/assets/login/favicon.ico" type="image/x-icon"/>
 	<!--===============================================================================================-->
 </head>
 <body>
 	<?php
    	//cetak jika ada notifikasi
 	if($this->session->flashdata('sukses')) { ?>
-		<script> alert("<?php echo $this->session->flashdata('sukses')?>") </script>';
+		<script> alert("<?php echo $this->session->flashdata('sukses');?>") </script>
 	<?php } ?>
 	<div class="limiter">
 		<div class="container-login100">

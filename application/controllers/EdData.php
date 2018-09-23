@@ -6,6 +6,7 @@ class EdData extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->simple_login->cek_login();
+		$this->simple_login->cek_admin();
 		$this->load->model('M_InData');
 	}
 
@@ -15,7 +16,7 @@ class EdData extends CI_Controller {
 		$result = $this->M_InData->lo_edData($item_no);
 		if ($result) {
 			$data['edd'] = $result;
-			$this->template->load('member/v_static','V_EdData', $data);
+			$this->template->load('v_static','V_EdData', $data);
 		}else{
 			echo '<script>alert("Camp Item Number not Available. Entry new data");</script>';
             redirect (site_url('indata'),'refresh');
@@ -25,7 +26,6 @@ class EdData extends CI_Controller {
 	}
 	public function update() {
 		$item_no = $this->input->post('item_no');
-		$tkn_lama = $this->input->post('token');
 		
 		function random($leng)  
 		{  
@@ -38,10 +38,15 @@ class EdData extends CI_Controller {
 			return $string;  
 		}
 		$token = random(10);
-		
+		$ac_type = $this->input->post('ac_type');
+		$jml = $this->db->select('ac_type')->from('dt_change')
+      	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
+      	if (!$jml) $jml = 1;
+      	else $jml+=1;
 		$data = array(
 			'item_no' => $item_no,
 			'token' => $token,
+			'numb' => $jml,
 			'rvcd' => 'R',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
@@ -60,11 +65,10 @@ class EdData extends CI_Controller {
 			'sg_num' => $this->input->post('sg_num'),
 			'ac_eff' => $this->input->post('ac_eff'),
 			'reason' => $this->input->post('reason'),
-			'support_doc' => $this->input->post('support_doc')
+			'support_doc' => $this->input->post('support_doc'),
+			'acc_by' => $this->input->post('acc_by'),
+			'no_peg' => $this->session->userdata('id_employee')
 		);
-		/*input to table dt_change*/
-		$sta = array('sta' => 'OLD');
-		$this->M_InData->update($sta,$tkn_lama);
 		$this->M_InData->input($data);
 
 		/*input to table dt_control*/

@@ -21,16 +21,12 @@
 									<input class="form-control" name="item_no" disabled style="width: 150px;">
 								</div>
 								<div class="form-group">
-									<label>Description</label>
-									<textarea class="form-control" name="desc" rows="5"></textarea>
-								</div>
-								<div class="form-group">
 									<label>Ref_Man</label>
 									<input class="form-control" name="ref_man" style="width: 300px">
 								</div>
 								<div class="form-group">
-									<label>Zone</label>
-									<input class="form-control" name="zone" style="width: 100px">
+									<label>Description</label>
+									<textarea class="form-control" name="desc" rows="9"></textarea>
 								</div>
 								<div class="form-group">
 									<label>AC EFF/ENG EFF</label>
@@ -55,6 +51,10 @@
 									</select>
 								</div>
 								<div class="form-group">
+									<label>Zone</label>
+									<input class="form-control" name="zone" style="width: 100px">
+								</div>
+								<div class="form-group">
 									<label>Sign Code</label>
 									<input class="form-control" name="sg_code" style="width: 200px">
 								</div>
@@ -69,10 +69,6 @@
 								<div class="form-group">
 									<label>REPETITIVE</label>
 									<textarea class="form-control" name="repetitive" rows="5"></textarea>
-								</div>
-								<div class="form-group">
-									<label>Task Code</label>
-									<input class="form-control" name="task_code" style="width: 150px">
 								</div>
 							</div>
 							<!-- /.col-lg-6 (nested) -->
@@ -97,6 +93,10 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Task Code</label>
+									<input class="form-control" name="task_code" style="width: 150px">
+								</div>
 								<div class="form-group">
 									<label>MSG-3 CAT</label>
 									<input class="form-control" name="cat"style="width: 200px">
@@ -131,6 +131,16 @@
 								<div class="form-group">
 									<label>SUPPORTING DOCUMENT LIST</label>
 									<input class="form-control" name="support_doc" style="width: 200px">
+								</div>
+								<div class="form-group">
+									<label>Accepted By</label>
+									<select class="form-control" name="acc_by" style="width: 150px">
+										<option >-</option>
+										<option value="MQA">MQA</option>
+										<option value="---">---</option>
+										<option value="---">---</option>
+										<option value="---">---</option>
+									</select>
 								</div>
 								<button type="submit" class="btn btn-success" style="margin-right: 10px;">Save</button>
 								<button type="reset" class="btn btn-danger">Reset</button>

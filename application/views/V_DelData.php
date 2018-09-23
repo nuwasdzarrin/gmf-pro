@@ -23,19 +23,14 @@
 									<input type="hidden" name="token" value="<?php echo $edd->token;?>">
 								</div>
 								<div class="form-group">
-									<label>Description</label>
-									<textarea class="form-control" name="desc" rows="5" disabled><?php echo $edd->task_desc;?></textarea>
-									<input type="hidden" name="desc" value="<?php echo $edd->task_desc;?>">
-								</div>
-								<div class="form-group">
 									<label>Ref_Man</label>
 									<input class="form-control" name="ref_man" value="<?php echo $edd->ref_man;?>" style="width: 300px" disabled>
 									<input type="hidden" name="ref_man" value="<?php echo $edd->ref_man;?>">
 								</div>
 								<div class="form-group">
-									<label>Zone</label>
-									<input class="form-control" name="zone" value="<?php echo $edd->zone;?>" style="width: 100px" disabled>
-									<input type="hidden" name="zone" value="<?php echo $edd->zone;?>">
+									<label>Description</label>
+									<textarea class="form-control" name="desc" rows="9" disabled><?php echo $edd->task_desc;?></textarea>
+									<input type="hidden" name="desc" value="<?php echo $edd->task_desc;?>">
 								</div>
 								<div class="form-group">
 									<label>AC EFF/ENG EFF</label>
@@ -62,6 +57,11 @@
 									</select>
 								</div>
 								<div class="form-group">
+									<label>Zone</label>
+									<input class="form-control" name="zone" value="<?php echo $edd->zone;?>" style="width: 100px" disabled>
+									<input type="hidden" name="zone" value="<?php echo $edd->zone;?>">
+								</div>
+								<div class="form-group">
 									<label>Sign Code</label>
 									<input class="form-control" name="sg_code" value="<?php echo $edd->sg_code;?>" style="width: 200px" disabled>
 									<input type="hidden" name="sg_code" value="<?php echo $edd->sg_code;?>">
@@ -80,11 +80,6 @@
 									<label>REPETITIVE</label>
 									<textarea class="form-control" name="repetitive" rows="5" disabled><?php echo $edd->repetitive;?></textarea>
 									<input type="hidden" name="repetitive" value="<?php echo $edd->repetitive;?>">
-								</div>
-								<div class="form-group">
-									<label>Task Code</label>
-									<input class="form-control" name="task_code" value="<?php echo $edd->task_code;?>" style="width: 150px" disabled>
-									<input type="hidden" name="task_code" value="<?php echo $edd->task_code;?>">
 								</div>
 							</div>
 							<!-- /.col-lg-6 (nested) -->
@@ -108,6 +103,11 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-6">
+								<div class="form-group">
+									<label>Task Code</label>
+									<input class="form-control" name="task_code" value="<?php echo $edd->task_code;?>" style="width: 150px" disabled>
+									<input type="hidden" name="task_code" value="<?php echo $edd->task_code;?>">
+								</div>
 								<div class="form-group">
 									<label>MSG-3 CAT</label>
 									<input class="form-control" name="cat" value="<?php echo $edd->cat;?>" style="width: 200px" disabled>
@@ -138,18 +138,27 @@
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label>EFFECT DATE</label>
-									<input type="date" class="form-control" name="eff_date" value="<?php echo $edd->eff_date;?>" style="width: 150px" disabled>
-									<input type="hidden" name="eff_date" value="<?php echo $edd->eff_date;?>">
+									<input type="date" class="form-control" name="eff_date" value="<?php echo $edd->eff_date;?>" style="width: 150px">
 								</div>
 								<div class="form-group">
 									<label>REASON</label>
-									<textarea class="form-control" rows="6" name="reason" disabled><?php echo $edd->reason;?></textarea>
-									<input type="hidden" name="reason" value="<?php echo $edd->reason;?>">
+									<textarea class="form-control" rows="6" name="reason"><?php echo $edd->reason;?></textarea>
 								</div>
 								<div class="form-group">
 									<label>SUPPORTING DOCUMENT LIST</label>
 									<input class="form-control" name="support_doc" value="<?php echo $edd->support_doc;?>" style="width: 200px" disabled>
 									<input type="hidden" name="support_doc" value="<?php echo $edd->support_doc;?>">
+								</div>
+								<div class="form-group">
+									<label>Accepted By</label>
+									<select class="form-control" name="acc_by" style="width: 150px" disabled>
+										<option value="<?php echo $edd->acc_by;?>"><?php echo $edd->acc_by;?></option>
+										<option value="MQA">MQA</option>
+										<option value="---">---</option>
+										<option value="---">---</option>
+										<option value="---">---</option>
+									</select>
+									<input type="hidden" name="acc_by" value="<?php echo $edd->acc_by;?>">
 								</div>
 								<button type="submit" class="btn btn-success">Delete</button>
 							</div>
@@ -157,7 +166,6 @@
 						<!-- /.col-lg-6 (nested) -->
 					</div>
 					<!-- /.row (nested) -->
-
 				</div>
 				<!-- /.panel-body -->
 			</div>

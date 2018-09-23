@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title><?PHP echo $ac_cod->code_pla."-".$one->id; ?></title>
+	<title><?PHP echo $ac_cod->code_pla."-".$one->numb; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,7 +17,9 @@
 		#non_print {
 			display: none;
 		}
-
+		@page{
+			size: landscape;
+		}
 		footer {
 			position: fixed;
 			bottom: 0;
@@ -42,7 +44,7 @@
 		<a href="<?php echo site_url('alldata');?>" id="non_print" class="btn btn-warning">Back to All Data</a>
 		<div class="row">
 			<div class="change-no">
-				CHANGE NO : <?PHP echo $cplane."-".$one->id; ?>
+				CHANGE NO : <?PHP echo $cplane."-".$one->numb; ?>
 			</div>
 		</div>
 		<div class="row">
@@ -67,18 +69,25 @@
 						<th>QTY</th>
 						<th>COMP CAT</th>
 					</tr>
-					<?php foreach ($cha->result() as $chang) { ?>
+					<?php $c=1; foreach ($cha->result() as $chang) { ?>
 						<tr>
 							<td class="kr">
-								<p> <?PHP echo $chang->sta; ?> </p>
+								<p> <?PHP
+									if ($jml==1) echo "NEW";
+									else {
+									 	if ($c==1) echo "OLD";
+									 	else echo "NEW";
+									} $c++;
+									?> 
+								</p>
 								<?PHP echo $chang->task_desc; ?><br><br>
 								<?PHP echo $chang->ref_man; ?><br>
 								ZONE : <?PHP echo $chang->zone; ?>
 							</td>
 							<td><?PHP echo $chang->task_code; ?></td>
 							<td><?PHP echo $chang->ac_eff; ?></td>
-							<td>
-								<p>THRESHOLD : </p>
+							<td valign=top>
+								THRESHOLD : 
 								<?PHP echo $chang->threshold; ?>
 								<p>REPETITIVE : </p>
 								<?PHP echo $chang->repetitive; ?>
@@ -111,13 +120,13 @@
 					</tr>
 					<tr>
 						<th colspan="2">SECTION</th>
-						<td colspan="3">TER-2</td>
+						<td colspan="3"><?php echo $this->session->userdata('unit'); ?></td>
 						<td colspan="2">TER-2</td>
-						<td colspan="3">MQA</td>
+						<td colspan="3"><?PHP echo $one->acc_by; ?></td>
 					</tr>
 					<tr >
 						<th colspan="2" height="75px">NAME & SIGN</th>
-						<td colspan="3" height="75px">&nbsp</td>
+						<td colspan="3" height="75px" valign=bottom><?php echo $this->session->userdata('username'); ?></td>
 						<td colspan="2" height="75px">&nbsp</td>
 						<td colspan="3" height="75px">&nbsp</td>
 					</tr>

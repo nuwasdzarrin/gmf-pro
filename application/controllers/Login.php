@@ -6,6 +6,7 @@
      public function index() {
  
          // Fungsi Login
+        $this->simple_login->cek_logout();
          $valid = $this->form_validation;
          $username = $this->input->post('username');
          $password = $this->input->post('password');
@@ -13,6 +14,7 @@
          $valid->set_rules('password','Password','required');
  
          if($valid->run()) {
+            
              $this->simple_login->login($username,$password, site_url('alldata'), site_url('login'));
          }
          // End fungsi login

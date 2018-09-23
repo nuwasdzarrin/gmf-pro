@@ -4,7 +4,7 @@
     float: left;
     display:inline-block;
 }
-  
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
@@ -20,10 +20,10 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    DataTables Advanced Tables
+
                 </div>
                 <!-- /.panel-heading -->
-                <button class="add-user btn btn-success" data-id_emp="" data-username="" data-email="" data-role="" data-pass="" data-re_pass="" style="margin: 10px 0 0 10px;"> Add User </button>
+                <button class="add-user btn btn-success" data-id_emp="" data-username="" data-email="" data-unit="" data-role="" data-pass="" data-re_pass="" style="margin: 10px 0 0 10px;"> Add User </button>
                 <!-- <a href="user/loAddUser" class="btn btn-success" style="margin: 10px 0 0 10px;">Add User</a> -->
                 <div class="panel-body">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
@@ -32,6 +32,7 @@
                                 <th>ID Employee</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Unit</th>
                                 <th>Role</th>
                                 <th>Control</th>
                             </tr>
@@ -42,9 +43,10 @@
                                     <td><?php echo $us->id_employee; ?></td>
                                     <td><?php echo $us->username;?></td>
                                     <td class="center"><?php echo $us->email;?></td>
+                                    <td class="center"><?php echo $us->unit;?></td>
                                     <td class="center"><?php echo $us->role;?></td>
                                     <td class="center">
-                                        <button class="edit-user btn btn-info fa fa-edit" data-id="<?php echo $us->id_user;?>" data-id_emp="<?php echo $us->id_employee;?>" data-username="<?php echo $us->username;?>" data-email="<?php echo $us->email;?>" data-role="<?php echo $us->role;?>" data-pass="" title="Edit User"> </button>
+                                        <button class="edit-user btn btn-info fa fa-edit" data-id="<?php echo $us->id_user;?>" data-id_emp="<?php echo $us->id_employee;?>" data-username="<?php echo $us->username;?>" data-email="<?php echo $us->email;?>" data-unit="<?php echo $us->unit;?>" data-role="<?php echo $us->role;?>" data-pass="" title="Edit User"> </button>
                                         <form method="POST" action="<?php echo site_url('user/delet')?>">
                                             <input type="hidden" name="id" value="<?php echo $us->id_user;?>">
                                             <button type="submit" title="Hapus Data" class="btn btn-danger fa fa-trash-o" ></button>
@@ -78,7 +80,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">ID Employee:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="id_empa" name="name" value="<?php echo set_value('name'); ?>" required>
+                            <input type="text" class="form-control" id="id_empa" name="name" style="width: 150px" maxlength="5" value="<?php echo set_value('name'); ?>" required>
                             <p> <?php echo form_error('name'); ?> </p>
                         </div>
                     </div>
@@ -94,6 +96,19 @@
                         <div class="col-sm-8">
                             <input type="email" class="form-control" id="emaila" name="email" value="<?php echo set_value('email'); ?>" required>
                             <p> <?php echo form_error('email'); ?> </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="content">Unit:</label>
+                        <div class="col-sm-8">
+                        <select class="form-control" name="unit" style="width: 150px">
+                            <option id="unit">---</option>
+                            <option value="TER-1">TER-1</option>
+                            <option value="TER-2">TER-2</option>
+                            <option value="TER-3">TER-3</option>
+                            <option value="TER-4">TER-4</option>
+                            <option value="TER-5">TER-5</option>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -145,7 +160,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="title">ID Employee:</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="id_emp" name="id_employee">
+                            <input type="text" class="form-control" id="id_emp" style="width: 150px" maxlength="5" name="id_employee">
                             <input type="hidden" class="form-control" id="id" name="id">
                         </div>
                     </div>
@@ -159,6 +174,19 @@
                         <label class="control-label col-sm-3" for="content">Email:</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" for="content">Unit:</label>
+                        <div class="col-sm-8">
+                        <select class="form-control" name="unit" style="width: 150px">
+                            <option id="unit">---</option>
+                            <option value="TER-1">TER-1</option>
+                            <option value="TER-2">TER-2</option>
+                            <option value="TER-3">TER-3</option>
+                            <option value="TER-4">TER-4</option>
+                            <option value="TER-5">TER-5</option>
+                        </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -196,6 +224,7 @@
         $('#id_emp').val($(this).data('id_empa'));
         $('#username').val($(this).data('usernamea'));
         $('#email').val($(this).data('emaila'));
+        $('#unita').val($(this).data('unita'));
         $('#pass').val($(this).data('passworda'));
         $('#re_pass').val($(this).data('re-password'));
         $('#role').val($(this).data('rolea'));
@@ -208,6 +237,7 @@
         $('#id_emp').val($(this).data('id_emp'));
         $('#username').val($(this).data('username'));
         $('#email').val($(this).data('email'));
+        $('#unit').val($(this).data('unit'));
         $('#pass').val($(this).data('password'));
         $('#role').val($(this).data('role'));
         $('#editUser').modal('show');

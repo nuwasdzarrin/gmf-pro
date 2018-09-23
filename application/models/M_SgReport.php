@@ -5,9 +5,8 @@ class M_SgReport extends CI_Model {
 	
 	var $tbl = 'dt_change'; //dt_change table
 	var $pl_cod = 'cod_plane'; //cod_plane table
-	public function mSgl($id,$item){	//model akses report from all_view
-		$cond = "item_no=$item AND id<=$id"; //kondisi where
-		$jml = $this->db->get_where($this->tbl, $cond)->num_rows();//jumlah maksimal data terecord
+	public function mSgl($jml,$item){	//model akses report from all_view
+		
 		if ($jml==1) {	//jika data hanya 1
 			$sgdata = $this->db->select('*')
 							->from($this->tbl)	
@@ -26,14 +25,14 @@ class M_SgReport extends CI_Model {
 	}
 
 	public function statis($id){	//fungsi header tabel report from all_view
-		$one = $this->db->select('id,item_no,ac_type,reason,support_doc')
+		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by')
 							->from($this->tbl)	
 							->where('id',$id)	//jika data hanya 1
 							->get()->row();
 		return $one;
 	}
 
-	public function mInEd($item){	//model akses report from input and edit
+	public function mInEd($jml,$item){	//model akses report from input and edit
 		$cond = "item_no=$item"; //kondisi where
 		$jml = $this->db->get_where($this->tbl, $cond)->num_rows();//jumlah maksimal data terecord
 		if ($jml==1) {	//jika data hanya 1
@@ -54,7 +53,7 @@ class M_SgReport extends CI_Model {
 	}
 
 	public function sInEd($item_no){	//fungsi header tabel report from input&edit
-		$one = $this->db->select('id,item_no,ac_type,reason,support_doc')
+		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by')
 							->from($this->tbl)	
 							->where('item_no',$item_no)
 							->order_by ('id','desc')

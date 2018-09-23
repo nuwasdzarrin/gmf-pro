@@ -14,7 +14,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="row">
-						<form role="form" enctype="multipart/form-data" method="post" action="<?php echo site_url('EdData/update')?>">
+						<form role="form" enctype="multipart/form-data" method="post" action="<?php echo site_url('member/EdData/update')?>">
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label for="disabledSelect">Camp Item No</label>
@@ -150,6 +150,7 @@
 						<!-- /.col-lg-6 (nested) -->
 					</div>
 					<!-- /.row (nested) -->
+
 				</div>
 				<!-- /.panel-body -->
 			</div>

@@ -7,9 +7,10 @@ class M_AllData extends CI_Model {
 	var $tabel = 'dt_control';
 
 	public function AllData(){
-		$data=$this->db->select('dt_change.id, item_no, ac_type, rvcd, status,
+		$data=$this->db->select('dt_change.id, item_no, numb, ac_type, rvcd, status,
 						 code_pla, idd, engineer, rev_no, send_ga, recei_ga, att, intime')
 						->from($this->tbl)
+						->where('no_peg', $this->session->userdata('id_employee'))
 						->join('cod_plane', 'cod_plane.name_pla = dt_change.ac_type')
 						->join('dt_control', 'dt_control.token = dt_change.token')
 						->get();
@@ -17,7 +18,7 @@ class M_AllData extends CI_Model {
 	}
 
 	public function arsip(){
-		$data=$this->db->select('dt_change.id, dt_change.token, item_no, ac_type, rvcd,
+		$data=$this->db->select('dt_change.id, dt_change.token, item_no, numb, ac_type, rvcd,
 						 status, code_pla, idd, engineer, rev_no, send_ga, recei_ga, att, intime')
 						->from($this->tbl)
 						->join('cod_plane', 'cod_plane.name_pla = dt_change.ac_type')
@@ -55,6 +56,10 @@ class M_AllData extends CI_Model {
 	{
 		$this->db->where('id',$id)->update($this->tbl, $rvcd);
 		return TRUE;
+	}
+
+	function delfile($idd){
+		$this->db->where('idd',$idd)->update($this->tabel, array('att' => ''));
 	}
 }
 

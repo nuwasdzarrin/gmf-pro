@@ -6,14 +6,14 @@ class InData extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->simple_login->cek_login();
-		$this->simple_login->cek_admin();
+		$this->simple_login->cek_member();
 		$this->load->model('M_InData');
 		$this->load->model('M_AllData');
 	}
 
      /*Load one or two data latest*/
 	public function index() {
-		$this->template->load('v_static','V_InData');
+		$this->template->load('member/v_static','member/V_InData');
 	}
 
 	public function input() {
@@ -32,17 +32,17 @@ class InData extends CI_Controller {
 		$ac_type = $this->input->post('ac_type');
       	$jml = $this->db->select('ac_type')->from('dt_change')
       	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
-      	if (!$jml) {$numb = 1;}
-      	else {$numb+=1;}
+      	if (!$jml) $jml = 1;
+      	else $jml+=1;
 		$data = array(
 			'token' => $token,
-			'numb' => $numb,
+			'numb' => $jml,
 			'rvcd' => 'N',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
 			'eff_date' => $this->input->post('eff_date'),
 			'qty' => $this->input->post('qty'),
-			'ac_type' => $ac_type,
+			'ac_type' => $this->input->post('ac_type'),
 			'threshold' => $this->input->post('threshold'),
 			'repetitive' => $this->input->post('repetitive'),
 			'resp' => $this->input->post('resp'),
@@ -68,9 +68,9 @@ class InData extends CI_Controller {
 		/*input to table dt_change*/
 		$this->M_InData->input($data);
 		/*input to table dt_control*/
-		$this->M_AllData->inp($dta); 
+		$this->M_AllData->inp($dta);
 
-		redirect (site_url('alldata'));
+		redirect (site_url('member/alldata'));
 		
 	}
 }

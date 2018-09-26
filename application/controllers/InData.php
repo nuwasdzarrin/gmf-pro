@@ -13,7 +13,8 @@ class InData extends CI_Controller {
 
      /*Load one or two data latest*/
 	public function index() {
-		$this->template->load('v_static','V_InData');
+		$data ['plane'] = $this->M_InData->loadplane();
+		$this->template->load('v_static','V_InData', $data);
 	}
 
 	public function input() {
@@ -30,9 +31,9 @@ class InData extends CI_Controller {
 	    }
 		$token = random(10);
 		$ac_type = $this->input->post('ac_type');
-      	$jml = $this->db->select('ac_type')->from('dt_change')
-      	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
-      	if (!$jml) {$numb = 1;}
+      	$no = $this->M_InData->latestnumb($ac_type);
+      	$numb = $no->numb;
+      	if (!$numb) {$numb = 1;}
       	else {$numb+=1;}
 		$data = array(
 			'token' => $token,

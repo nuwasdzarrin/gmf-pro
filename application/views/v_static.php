@@ -31,12 +31,12 @@
 
     <link rel="shortcut icon" href="<?php echo base_url();?>/assets/login/favicon.ico" type="image/x-icon"/>
     <style type="text/css">
-        @media only screen and (max-width:800px){
-            #wrapper .navbar.navbar-default.navbar-static-top img{
-                display: none;
-            }
+    @media only screen and (max-width:800px){
+        #wrapper .navbar.navbar-default.navbar-static-top img{
+            display: none;
         }
-    </style>
+    }
+</style>
 
 </head>
 
@@ -59,8 +59,8 @@
             <!-- /.navbar-header -->
             
             <img src="<?php echo base_url();?>assets/login/GMF.png" style="width: 200px; height: 50px; margin: 10px 0 10px 100px;">
-                <img src="<?php echo base_url();?>assets/adminast/report/GI.png" style="width: 100px; height: 50px; margin: 10px 0 10px 20px;">
-                <img src="<?php echo base_url();?>assets/adminast/report/citilink.png" style="width: 200px; height: 50px; margin: 10px 0 10px 20px;">
+            <img src="<?php echo base_url();?>assets/adminast/report/GI.png" style="width: 100px; height: 50px; margin: 10px 0 10px 20px;">
+            <img src="<?php echo base_url();?>assets/adminast/report/citilink.png" style="width: 200px; height: 50px; margin: 10px 0 10px 20px;">
             
             <ul class="nav navbar-top-links navbar-right">
                 <li><a href="#"><i class="fa fa-user fa-fw"></i><?php echo $this->session->userdata('username') ?></a>
@@ -88,48 +88,49 @@
                                         <form method="post" action="<?php echo site_url('eddata')?>" enctype="multipart/form-data">
                                             <input type="text" class="form-control" style="width: 82%;" maxlength="10" name="item_no" placeholder="Enter Camp Item...">
                                             <span class="input-group-btn">
-                                             <button class="btn btn-default" type="submit">
-                                                 <i class="fa fa-search"></i>
-                                             </button>
-                                            </span>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-trash fa-fw"></i> Delete<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li class="sidebar-search">
-                                    <div class="input-group custom-search-form">
-                                        <form method="post" action="<?php echo site_url('deldata')?>" enctype="multipart/form-data">
-                                            <input type="text" class="form-control" style="width: 82%;" maxlength="10" name="item_no" placeholder="Enter Camp Item...">
-                                            <span class="input-group-btn">
-                                             <button class="btn btn-default" type="submit">
-                                                 <i class="fa fa-search"></i>
-                                             </button>
-                                            </span>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                    <!-- <li>
-                        <a href="<?php echo site_url('alldata/arsip');?>"><i class="fa fa-file-archive-o fa-fw"></i> Arsip</a>
-                    </li> -->
-                    <li>
-                        <a href="<?php echo site_url('user');?>"><i class="fa fa-user fa-fw"></i> User</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
+                                               <button class="btn btn-default" type="submit">
+                                                   <i class="fa fa-search"></i>
+                                               </button>
+                                           </span>
+                                       </form>
+                                   </div>
+                               </li>
+                           </ul>
+                       </li>
+                       <li>
+                        <a href="#"><i class="fa fa-trash fa-fw"></i> Delete<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <form method="post" action="<?php echo site_url('deldata')?>" enctype="multipart/form-data">
+                                        <input type="text" class="form-control" style="width: 82%;" maxlength="10" name="item_no" placeholder="Enter Camp Item...">
+                                        <span class="input-group-btn">
+                                           <button class="btn btn-default" type="submit">
+                                               <i class="fa fa-search"></i>
+                                           </button>
+                                       </span>
+                                   </form>
+                               </div>
+                           </li>
+                       </ul>
+                   </li>
+                   <li>
+                    <a href="<?php echo site_url('allplane');?>"><i class="fa fa-plane fa-fw"></i> Plane</a>
+                </li>
+                <li>
+                    <a href="<?php echo site_url('user');?>"><i class="fa fa-user fa-fw"></i> User</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('assets/user_guide/User_Guide.pdf');?>"><i class="fa fa-book fa-fw"></i> User_Guide</a>
+                </li>
+            </ul>
         </div>
-        <!-- /.navbar-static-side -->
-    </nav>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
 
-    <?php echo $contents;?>
+<?php echo $contents;?>
 
 </div>
 <!-- /#wrapper -->

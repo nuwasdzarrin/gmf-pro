@@ -15,14 +15,13 @@ class EdData extends CI_Controller {
 		$item_no = $this->input->post('item_no');
 		$result = $this->M_InData->lo_edData($item_no);
 		if ($result) {
+			$data ['plane'] = $this->M_InData->loadplane();
 			$data['edd'] = $result;
 			$this->template->load('v_static','V_EdData', $data);
 		}else{
 			echo '<script>alert("Camp Item Number not Available. Entry new data");</script>';
             redirect (site_url('indata'),'refresh');
 		}
-		
-		
 	}
 	public function update() {
 		$item_no = $this->input->post('item_no');
@@ -39,14 +38,14 @@ class EdData extends CI_Controller {
 		}
 		$token = random(10);
 		$ac_type = $this->input->post('ac_type');
-		$jml = $this->db->select('ac_type')->from('dt_change')
-      	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
-      	if (!$jml) $jml = 1;
-      	else $jml+=1;
+		$no = $this->M_InData->latestnumb($ac_type);
+      	$numb = $no->numb;
+      	if (!$numb) {$numb = 1;}
+      	else {$numb+=1;}
 		$data = array(
 			'item_no' => $item_no,
 			'token' => $token,
-			'numb' => $jml,
+			'numb' => $numb,
 			'rvcd' => 'R',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),

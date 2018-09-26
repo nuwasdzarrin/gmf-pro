@@ -120,21 +120,21 @@
 					</tr>
 					<tr>
 						<th colspan="2">SECTION</th>
-						<td colspan="3"><?php echo $this->session->userdata('unit'); ?></td>
+						<td colspan="3"><?PHP echo $one->unit; ?></td>
 						<td colspan="2">TER-2</td>
 						<td colspan="3"><?PHP echo $one->acc_by; ?></td>
 					</tr>
 					<tr >
 						<th colspan="2" height="75px">NAME & SIGN</th>
-						<td colspan="3" height="75px" valign=bottom><?php echo $this->session->userdata('username'); ?></td>
+						<td colspan="3" height="75px" valign=bottom><?PHP echo $one->username; ?></td>
 						<td colspan="2" height="75px">&nbsp</td>
 						<td colspan="3" height="75px">&nbsp</td>
 					</tr>
 					<tr>
 						<th colspan="2">DATE</th>
-						<td colspan="3">4 JULY 2018</td>
-						<td colspan="2">5 JULY 2018</td>
-						<td colspan="3">5 JULY 2018</td>
+						<td colspan="3"><?PHP echo strtoupper (date('d F Y', strtotime($one->intime))); ?></td>
+						<td colspan="2">&nbsp</td>
+						<td colspan="3">&nbsp</td>
 					</tr>
 				</table>
 			</div>

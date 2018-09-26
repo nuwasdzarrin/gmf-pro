@@ -25,9 +25,11 @@ class M_SgReport extends CI_Model {
 	}
 
 	public function statis($id){	//fungsi header tabel report from all_view
-		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by')
+		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by, users.username, users.unit, dt_control.intime')
 							->from($this->tbl)	
 							->where('id',$id)	//jika data hanya 1
+							->join('users', 'dt_change.no_peg = users.id_employee')
+							->join('dt_control', 'dt_change.token = dt_control.token')
 							->get()->row();
 		return $one;
 	}
@@ -53,11 +55,13 @@ class M_SgReport extends CI_Model {
 	}
 
 	public function sInEd($item_no){	//fungsi header tabel report from input&edit
-		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by')
+		$one = $this->db->select('id, numb, item_no, ac_type, reason, support_doc, acc_by, users.username, users.unit, dt_control.intime')
 							->from($this->tbl)	
 							->where('item_no',$item_no)
 							->order_by ('id','desc')
 							->limit (1) //jika data hanya 1
+							->join('users', 'dt_change.no_peg = users.id_employee')
+							->join('dt_control', 'dt_change.token = dt_control.token')
 							->get()
 							->row();
 		return $one;

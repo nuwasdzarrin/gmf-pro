@@ -101,14 +101,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="content">Unit:</label>
                         <div class="col-sm-8">
-                        <select class="form-control" name="unit" style="width: 150px">
-                            <option id="unit">---</option>
-                            <option value="TER-1">TER-1</option>
-                            <option value="TER-2">TER-2</option>
-                            <option value="TER-3">TER-3</option>
-                            <option value="TER-4">TER-4</option>
-                            <option value="TER-5">TER-5</option>
-                        </select>
+                            <input type="text" class="form-control" id="unita" name="unita" style="width: 250px" placeholder="huruf besar semua ex: TER-2" value="<?php echo set_value('unita'); ?>" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -179,14 +172,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3" for="content">Unit:</label>
                         <div class="col-sm-8">
-                        <select class="form-control" name="unit" style="width: 150px">
-                            <option id="unit">---</option>
-                            <option value="TER-1">TER-1</option>
-                            <option value="TER-2">TER-2</option>
-                            <option value="TER-3">TER-3</option>
-                            <option value="TER-4">TER-4</option>
-                            <option value="TER-5">TER-5</option>
-                        </select>
+                            <input type="text" class="form-control" id="unit" name="unit" style="width: 250px" required>
                         </div>
                     </div>
                     <div class="form-group">

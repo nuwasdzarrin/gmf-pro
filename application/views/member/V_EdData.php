@@ -42,15 +42,9 @@
 									<label>A/C Type</label>
 									<select class="form-control" name="ac_type" style="width: 150px">
 										<option value="<?php echo $edd->ac_type;?>"><?php echo $edd->ac_type;?></option>
-										<option value="A-320">A-320</option>
-										<option value="A-330">A-330</option>
-										<option value="ATR-72-212A">ATR-72-212A</option>
-										<option value="B-737-800">B-737-800</option>
-										<option value="B-747-400">B-747-400</option>
-										<option value="B-777">B-777</option>
-										<option value="B-737-345 MSG-2">B-737-345 MSG-2</option>
-										<option value="B-737-345 MSG-3">B-737-345 MSG-3</option>
-										<option value="CRJ-1000">CRJ-1000</option>
+										<?php foreach ($plane->result() as $pl) { ?>
+											<option value="<?php echo $pl->name_pla; ?>"><?php echo $pl->name_pla; ?></option>
+										<?php } ?>
 									</select>
 								</div>
 								<div class="form-group">
@@ -144,7 +138,7 @@
 										<option value="---">---</option>
 									</select>
 								</div>
-								<button type="submit" class="btn btn-success">Update</button>
+								<button type="submit" class="btn btn-success">Revisi</button>
 							</div>
 						</form>
 						<!-- /.col-lg-6 (nested) -->

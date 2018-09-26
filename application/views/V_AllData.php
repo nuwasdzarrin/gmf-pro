@@ -97,7 +97,7 @@ p.Rejected {
                                         <form method="POST" action="<?php echo site_url('alldata/edAllData')?>">
                                             <input type="hidden" name="id" value="<?php echo $all->idd;?>">
                                             <input type="hidden" name="change_no" value="<?php echo $change_no;?>">
-                                            <button type="submit" title="Revisi Data" class="btn btn-warning fa fa-edit" ></button>
+                                            <button type="submit" title="Revisi All Data" class="btn btn-warning fa fa-edit" ></button>
                                         </form>
                                     </td>
                                 </tr>

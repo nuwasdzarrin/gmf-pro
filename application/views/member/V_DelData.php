@@ -45,15 +45,6 @@
 									<input type="hidden" name="ac_type" value="<?php echo $edd->ac_type;?>">
 									<select class="form-control" name="ac_type" style="width: 150px" disabled>
 										<option value="<?php echo $edd->ac_type;?>"><?php echo $edd->ac_type;?></option>
-										<option value="A-320">A-320</option>
-										<option value="A-330">A-330</option>
-										<option value="ATR-72-212A">ATR-72-212A</option>
-										<option value="B-737-800">B-737-800</option>
-										<option value="B-747-400">B-747-400</option>
-										<option value="B-777">B-777</option>
-										<option value="B-737-345 MSG-2">B-737-345 MSG-2</option>
-										<option value="B-737-345 MSG-3">B-737-345 MSG-3</option>
-										<option value="CRJ-1000">CRJ-1000</option>
 									</select>
 								</div>
 								<div class="form-group">

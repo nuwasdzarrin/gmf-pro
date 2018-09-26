@@ -93,6 +93,11 @@ p.Rejected {
                                             <input type="hidden" name="item_no" value="<?php echo $all->item_no;?>">
                                             <button type="submit" title="Print Data" class="btn btn-primary fa fa-print" ></button>
                                         </form>
+                                        <form method="POST" action="<?php echo site_url('member/eddata/editform')?>">
+                                            <input type="hidden" name="id" value="<?php echo $all->id;?>">
+                                            <input type="hidden" name="change_no" value="<?php echo $change_no;?>">
+                                            <button type="submit" title="Edit Form" class="btn btn-warning fa fa-edit" ></button>
+                                        </form>
                                     </td>
                                 </tr>
                             <?php } ?>

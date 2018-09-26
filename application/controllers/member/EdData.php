@@ -15,6 +15,7 @@ class EdData extends CI_Controller {
 		$item_no = $this->input->post('item_no');
 		$result = $this->M_InData->lo_edData($item_no);
 		if ($result) {
+			$data ['plane'] = $this->M_InData->loadplane();
 			$data['edd'] = $result;
 			$this->template->load('member/v_static','member/V_EdData', $data);
 		}else{
@@ -39,14 +40,14 @@ class EdData extends CI_Controller {
 		}
 		$token = random(10);
 		$ac_type = $this->input->post('ac_type');
-		$jml = $this->db->select('ac_type')->from('dt_change')
-      	->where('ac_type=',$ac_type)->get()->num_rows();//jumlah maksimal data terecord
-      	if (!$jml) $jml = 1;
-      	else $jml+=1;
+		$no = $this->M_InData->latestnumb($ac_type);
+      	$numb = $no->numb;
+      	if (!$numb) {$numb = 1;}
+      	else {$numb+=1;}
 		$data = array(
 			'item_no' => $item_no,
 			'token' => $token,
-			'numb' => $jml,
+			'numb' => $numb,
 			'rvcd' => 'R',
 			'task_code' => $this->input->post('task_code'),
 			'cat' => $this->input->post('cat'),
@@ -81,5 +82,45 @@ class EdData extends CI_Controller {
 		$this->M_AllData->inp($dta);
 
 		redirect (site_url('SgReport/InEd/'.$item_no));
+	}
+
+	public function editform() {
+		$id = $this->input->post('id');
+		$result = $this->M_InData->lo_edform($id);
+		$data ['plane'] = $this->M_InData->loadplane();
+		$data['edd'] = $result;
+		$this->template->load('member/v_static','member/v_edform', $data);
+	}
+
+	public function updateform() {
+		$id = $this->input->post('id');
+		$data = array(
+			'item_no' => $this->input->post('item_no'),
+			'token' => $this->input->post('token'),
+			'numb' => $this->input->post('numb'),
+			'rvcd' => 'R',
+			'task_code' => $this->input->post('task_code'),
+			'cat' => $this->input->post('cat'),
+			'eff_date' => $this->input->post('eff_date'),
+			'qty' => $this->input->post('qty'),
+			'ac_type' => $this->input->post('ac_type'),
+			'threshold' => $this->input->post('threshold'),
+			'repetitive' => $this->input->post('repetitive'),
+			'resp' => $this->input->post('resp'),
+			'part_no' => $this->input->post('part_no'),
+			'comp' => $this->input->post('comp'),
+			'task_desc' => $this->input->post('desc'),
+			'ref_man' => $this->input->post('ref_man'),
+			'zone' => $this->input->post('zone'),
+			'sg_code' => $this->input->post('sg_code'),
+			'sg_num' => $this->input->post('sg_num'),
+			'ac_eff' => $this->input->post('ac_eff'),
+			'reason' => $this->input->post('reason'),
+			'support_doc' => $this->input->post('support_doc'),
+			'acc_by' => $this->input->post('acc_by'),
+			'no_peg' => $this->session->userdata('id_employee')
+		);
+		$this->M_InData->update_form($data,$id);
+		redirect (site_url('member/alldata'));
 	}
 }
